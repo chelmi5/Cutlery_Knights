@@ -1,2 +1,2 @@
 # Cutlery_Knights
-Traverse the kitchen, defeated possessed foods and improving your skills~
+Traverse the kitchen, defeating possessed foods and improving your skills~
