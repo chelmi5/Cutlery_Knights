@@ -40,7 +40,8 @@ public class GameMenu {
     } // End of execute choice
     
     private void startNewGame() {
-        System.out.println("Starting New Game");
+        NewGame game = new NewGame();
+        game.chooseCharacter();
     }
 
     private void loadGame() {
