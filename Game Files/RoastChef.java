@@ -3,7 +3,17 @@
  */
 public class RoastChef extends GameCharacter {
     @Override
-    public void displayStats() {
+    public void attack() {
 
+    }
+
+    @Override
+    public void defend() {
+
+    }
+
+    @Override
+    public void displayStats() {
+        System.out.println("I am the Roast Chef");
     }
 }

@@ -45,6 +45,7 @@ public class GameMenu {
     }
 
     private void loadGame() {
-        System.out.println("Loading Game");
+        LoadGame game = new LoadGame();
+        game.fileCraller();
     }
 }
