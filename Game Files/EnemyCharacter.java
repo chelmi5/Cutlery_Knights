@@ -4,5 +4,4 @@
 public interface EnemyCharacter {
     void attack();
     void defend();
-    void displayStats();
 }
