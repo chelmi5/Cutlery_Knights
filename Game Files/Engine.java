@@ -6,7 +6,7 @@ public class Engine {
         GameMenu menu = new GameMenu();
         menu.displayMenu();
         
-        Game g = new Game();
-        g.update();
+        //Game g = new Game();
+        //g.update();
     }
 }
