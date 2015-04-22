@@ -1,7 +1,10 @@
+package Characters;
+
 /**
  * Created by CountryGeek1 on 4/19/2015.
  */
-public class FishChef implements GameCharacter {
+public class PastryChef implements GameCharacter {
+
     @Override
     public void attack() {
 
@@ -14,6 +17,6 @@ public class FishChef implements GameCharacter {
 
     @Override
     public void displayStats() {
-        System.out.println("I am a Fish Chef");
+        System.out.println("I am a Pastry Chef");
     }
 }

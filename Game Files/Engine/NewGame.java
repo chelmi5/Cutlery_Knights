@@ -1,3 +1,7 @@
+package Engine;
+
+import Characters.*;
+
 import java.util.Scanner;
 
 /**
@@ -15,7 +19,7 @@ public class NewGame {
         Scanner kb = new Scanner(System.in);
         for (int index = 0; index < 3; index++)
         {
-            System.out.println("\nChoose a Chef.");
+            System.out.println("Choose a Chef.");
             System.out.println("1. Fish Chef");
             System.out.println("2. Pastry Chef");
             System.out.println("3. Saute Chef");

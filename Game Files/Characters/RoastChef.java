@@ -1,7 +1,9 @@
+package Characters;
+
 /**
  * Created by CountryGeek1 on 4/19/2015.
  */
-public class SauteChef implements GameCharacter {
+public class RoastChef implements GameCharacter {
     @Override
     public void attack() {
 
@@ -14,6 +16,6 @@ public class SauteChef implements GameCharacter {
 
     @Override
     public void displayStats() {
-        System.out.println("I am a Saute Chef");
+        System.out.println("I am the Roast Chef");
     }
 }
