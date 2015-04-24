@@ -44,6 +44,8 @@ public class GameMenu {
     private void startNewGame() {
         NewGame game = new NewGame();
         game.chooseCharacter();
+
+        //play state here
     }
 
     private void loadGame() {
