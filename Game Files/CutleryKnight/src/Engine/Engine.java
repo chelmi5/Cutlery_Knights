@@ -5,7 +5,9 @@ package Engine;
  */
 public class Engine {
     public static void main(String[] args) {
-        GameMenu menu = new GameMenu();
-        menu.displayMenu();
+        GameFrame TitleFrame = new GameFrame(1, "Title");
+        //GameMenu menu = new GameMenu();
+        //menu.displayMenu();
+        //GameFrame PlayFrame = new GameFrame(2, "Game");
     }
 }

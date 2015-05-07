@@ -41,7 +41,7 @@ public class GameMenu {
         }
     } // End of execute choice
     
-    private void startNewGame() {
+    public void startNewGame() {
         NewGame game = new NewGame();
         game.chooseCharacter();
 

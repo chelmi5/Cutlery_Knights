@@ -4,34 +4,22 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
-
-    public GameFrame() {
-
-        //add(new ExplorationState());
-        //add(new TitleState());
-        /*if ( i == 1 )
+    public GameFrame(int state, String Title) {
+        if ( state == 1 )
         {
-            add(new TitleState());
+            add(new TitleState("menu.png"));
+            //add(new NewGame());
         }
-        if ( i == 2 )
+        if ( state == 2 )
         {
             add(new ExplorationState());
-        }*/
+        }
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1024, 768);
+        setSize(1920, 1080);
         setLocationRelativeTo(null);
-        setTitle("Test Moving");
+        setTitle(Title);
         setResizable(false);
         setVisible(true);
     }
-
-    public static void main(String[] args) {
-        GameMenu menu = new GameMenu();        
-        menu.displayMenu();
-        
-        //new GameFrame(int i);
-    }
-    
-    
 }

@@ -25,12 +25,11 @@ public class ExplorationState extends JPanel implements ActionListener {
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
-        sprite = new CharacterSprite();
+        sprite = new CharacterSprite("craft.png");
 
         timer = new Timer(5, this);
         timer.start();
     }
-
 
     public void paint(Graphics g) {
         super.paint(g);
@@ -42,12 +41,10 @@ public class ExplorationState extends JPanel implements ActionListener {
         g.dispose();
     }
 
-
     public void actionPerformed(ActionEvent e) {
         sprite.move();
         repaint();  
     }
-
 
     private class TAdapter extends KeyAdapter {
 
@@ -59,5 +56,4 @@ public class ExplorationState extends JPanel implements ActionListener {
             sprite.keyPressed(e);
         }
     }
-
 }

@@ -15,13 +15,13 @@ public class CharacterSprite {
     private int y;
     private Image image;
 
-    public CharacterSprite() {
+    public CharacterSprite(String imgName) {
+        spriteName = imgName;
         ImageIcon ii = new ImageIcon(this.getClass().getResource(spriteName));
         image = ii.getImage();
         x = 40;
         y = 60;
     }
-
 
     public void move(){
          x += dx;

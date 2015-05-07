@@ -5,5 +5,6 @@ package Objects;
  */
 public class Inventory {
     // Holds Herbs and everything else
-    // Testin
+    // Testing
+    System.out.println();
 }
