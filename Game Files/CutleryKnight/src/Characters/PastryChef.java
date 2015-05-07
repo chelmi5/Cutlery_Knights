@@ -1,18 +1,17 @@
 package Characters;
 
+import Objects.AttackBehavior;
+import Objects.PieTin;
+import Objects.SpoonAttack;
+
 /**
  * Created by CountryGeek1 on 4/19/2015.
  */
-public class PastryChef implements GameCharacter {
+public class PastryChef extends GameCharacter {
 
-    @Override
-    public void attack() {
-
-    }
-
-    @Override
-    public void defend() {
-
+    public PastryChef() {
+        mAttack = new SpoonAttack();
+        mDefend = new PieTin();
     }
 
     @Override
