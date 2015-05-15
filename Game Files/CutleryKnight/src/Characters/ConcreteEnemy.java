@@ -1,12 +1,12 @@
 public class ConcreteEnemy extends Enemy{
    
    //standard enemies have the same initial values
-   private  int    DMin        = 5;
-   private  int    DMax        = 15;
-   private  double pToDefend   = 30;
+   // DMin        = 5;
+   // DMax        = 15;
+   // pToDefend   = 30.0;
    
-   public ConcreteEnemy(String eName){
-      super(eName,DMin,DMax,pToDefend);
+      public ConcreteEnemy(String eName){
+      super(eName, 5, 15, 30.0);
    }
    
 }
