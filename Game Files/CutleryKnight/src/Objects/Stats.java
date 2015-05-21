@@ -14,6 +14,12 @@ public class Stats {
         mAttackSpeed = 1;
     }
 
+    public Stats(int hp, int ad, int as) {
+        mHP = hp;
+        mAttackDamage = ad;
+        mAttackSpeed = as;
+    }
+
     public int getHP() {
         return mHP;
     }
@@ -38,4 +44,8 @@ public class Stats {
         this.mAttackSpeed = mAttackSpeed + speedBoost;
     }
     // Special attack
+
+    public void displayStats() {
+        System.out.println("HP: " + mHP + "\nAttack Damage: " + mAttackDamage + "\nAttack Speed: " + mAttackSpeed);
+    }
 }
