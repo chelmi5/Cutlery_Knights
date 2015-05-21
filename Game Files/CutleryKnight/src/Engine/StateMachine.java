@@ -1,6 +1,4 @@
 package Engine;
-
-import java.util.*;
 import java.rmi.*;
 import java.rmi.server.*;
 
@@ -9,15 +7,9 @@ public class StateMachine extends UnicastRemoteObject
     IState titleState;
     IState explorationState;
     IState battleState;
-    //IState characterSelectState;
-    
     IState currentState;
     String location;
-    
     GameFrame gameFrame;
-    
-    //ExplorationGraphics exploreG;
-    //TitleGraphics titleG;
     
     public StateMachine() throws RemoteException//String location) throws RemoteException
     {

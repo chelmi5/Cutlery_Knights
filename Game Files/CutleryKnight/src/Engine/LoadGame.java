@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-/**
- * Created by CountryGeek1 on 4/19/2015.
- */
 public class LoadGame {
 
     public void fileCraller() {

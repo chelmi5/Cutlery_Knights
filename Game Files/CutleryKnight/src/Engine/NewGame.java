@@ -1,12 +1,7 @@
 package Engine;
-
 import Characters.*;
-
 import java.util.Scanner;
 
-/**
- * Created by CountryGeek1 on 4/16/2015.
- */
 public class NewGame {
     int mChoice  = 0;
     public void chooseCharacter() {

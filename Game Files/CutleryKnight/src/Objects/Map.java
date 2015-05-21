@@ -1,8 +1,5 @@
 package Objects;
 
-/**
- * Created by CountryGeek1 on 5/8/2015.
- */
 public class Map {
     private int currentLevel = 1;
     private char[][] LevelArray;
