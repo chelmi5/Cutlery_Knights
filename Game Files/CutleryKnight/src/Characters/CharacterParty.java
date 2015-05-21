@@ -1,10 +1,6 @@
 package Characters;
-
 import Objects.Inventory;
 
-/**
- * Created by CountryGeek1 on 5/15/2015.
- */
 public class CharacterParty {
     GameCharacter GamePartyArray[] = new GameCharacter[3];
     Inventory mInventory = new Inventory();
@@ -19,5 +15,12 @@ public class CharacterParty {
             GamePartyArray[i].displayStats();
         }
         mInventory.displayInvitory();
+    }
+
+    public void displayStats() {
+        for (int i = 0; i < GamePartyArray.length; i++)
+        {
+
+        }
     }
 }

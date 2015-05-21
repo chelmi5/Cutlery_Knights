@@ -1,10 +1,6 @@
 package Objects;
-
 import java.util.ArrayList;
 
-/**
- * Created by CountryGeek1 on 5/6/2015.
- */
 public class Inventory {
     ArrayList<Item> mInventory = new ArrayList<Item>();
 

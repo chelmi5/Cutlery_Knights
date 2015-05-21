@@ -2,8 +2,9 @@ package Engine;
 
 public class EmptyState implements IState
 {
-   transient StateMachine stateMachine;
-   private String type;
+    transient StateMachine stateMachine;
+    private String type;
+    private AGraphics graphics;
    
    public EmptyState(StateMachine s)
    {
@@ -20,6 +21,11 @@ public class EmptyState implements IState
     {
         // Nothing to update in the empty state.
         System.out.println("Empty State update");
+    }
+
+    public AGraphics getGraphics()
+    {
+        return this.graphics;
     }
  
     public void Render()

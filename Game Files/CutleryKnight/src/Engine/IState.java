@@ -1,5 +1,4 @@
 package Engine;
-
 import java.io.*;
 
 public interface IState extends Serializable

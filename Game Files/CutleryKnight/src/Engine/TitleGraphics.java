@@ -1,5 +1,4 @@
 package Engine;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,10 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
-import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.*;
 
 public class TitleGraphics extends AGraphics implements ActionListener {
 

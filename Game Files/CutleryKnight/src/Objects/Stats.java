@@ -1,8 +1,5 @@
 package Objects;
 
-/**
- * Created by CountryGeek1 on 4/22/2015.
- */
 public class Stats {
     private int mHP;
     private int mAttackDamage;
@@ -12,6 +9,12 @@ public class Stats {
         mHP = 100;
         mAttackDamage = 5;
         mAttackSpeed = 1;
+    }
+
+    public Stats(int hp, int ad, int as) {
+        mHP = hp;
+        mAttackDamage = ad;
+        mAttackSpeed = as;
     }
 
     public int getHP() {
@@ -38,4 +41,8 @@ public class Stats {
         this.mAttackSpeed = mAttackSpeed + speedBoost;
     }
     // Special attack
+
+    public void displayStats() {
+        System.out.println("HP: " + mHP + "\nAttack Damage: " + mAttackDamage + "\nAttack Speed: " + mAttackSpeed);
+    }
 }

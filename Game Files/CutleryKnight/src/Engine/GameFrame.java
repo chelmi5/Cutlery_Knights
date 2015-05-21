@@ -1,5 +1,4 @@
 package Engine;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -7,11 +6,8 @@ public class GameFrame extends JFrame {
     public JPanel currentPanel;
 
     public GameFrame(IState is) {
-                
         currentPanel = is.getGraphics();
-        
         add(currentPanel);
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1600, 925); 
         setLocationRelativeTo(null);

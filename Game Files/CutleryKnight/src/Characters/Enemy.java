@@ -1,9 +1,10 @@
-import java.util.*;
+package Characters;
+import Objects.Stats;
 
 public abstract class Enemy{
 
    public   String   enemyName;
-   private  Stats    stats;
+   private Stats mStats;
    private  int      damageRangeMin;
    private  int      damageRangeMax;
    private  double   percentToDefend;
@@ -23,7 +24,7 @@ public abstract class Enemy{
    public boolean defend(int damage){
       
       if (percentToDefend < Math.random()){
-         stats.updateHP(damage);
+         mStats.updateHP(damage);
          return true;
       }
       return false;
@@ -56,7 +57,7 @@ public abstract class Enemy{
       setEName(eName);
    }
 
-
-
-
+   public void displayStats() {
+      mStats.displayStats();
+   }
 }

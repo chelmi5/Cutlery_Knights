@@ -2,10 +2,12 @@ package Engine;
 
 public class BattleState implements IState
 {
-   transient StateMachine stateMachine;
-   private String type;
-   
-   public BattleState(StateMachine s)
+    transient StateMachine stateMachine;
+    private String type;
+    private AGraphics graphics;
+
+
+    public BattleState(StateMachine s)
    {
       this.stateMachine = s;
       this.type = "battle";
@@ -15,11 +17,15 @@ public class BattleState implements IState
    {
       return this.type;
    }
-   
+
     public void Update()
     {
-        // BattleState Update
         System.out.println("Battle State update");
+    }
+
+    public AGraphics getGraphics()
+    {
+        return this.graphics;
     }
  
     public void Render()
