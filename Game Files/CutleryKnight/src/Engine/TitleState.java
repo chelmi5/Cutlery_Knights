@@ -4,16 +4,23 @@ public class TitleState implements IState
 {
    transient StateMachine stateMachine;
    private String type;
-   
+   private AGraphics graphics;
+      
    public TitleState(StateMachine s)
    {
       this.stateMachine = s;
       this.type = "title";
+      this.graphics = new TitleGraphics();
    }
    
    public String getType()
    {
       return this.type;
+   }
+   
+   public AGraphics getGraphics()
+   {
+      return this.graphics;
    }
    
     public void Update()
@@ -41,4 +48,5 @@ public class TitleState implements IState
         // TitleState OnExit
         System.out.println("Title State OnExit");
     }
+        
 }

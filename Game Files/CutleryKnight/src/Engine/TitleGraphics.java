@@ -13,8 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.*;
 
-
-public class TitleGraphics extends JPanel implements ActionListener {
+public class TitleGraphics extends AGraphics implements ActionListener {
 
     private Timer timer;
     private BackgroundImage bg;
@@ -54,19 +53,27 @@ public class TitleGraphics extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         //bg.move();
-        repaint();  
+        repaint();
     }
-
 
     private class TAdapter extends KeyAdapter {
 
         public void keyReleased(KeyEvent e) {
+            int key = e.getKeyCode();
             System.out.println("Key Released");
             //bg.keyReleased(e);
         }
 
         public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
+            
             System.out.println("Key Pressed");
+            
+            if (key == KeyEvent.VK_1 || key == KeyEvent.VK_ENTER)
+            {  
+               //Change states
+               System.out.println("Pressed enter or 1!");
+            }
             //bg.keyPressed(e);
         }
     }

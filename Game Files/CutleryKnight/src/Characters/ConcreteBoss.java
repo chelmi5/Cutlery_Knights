@@ -1,6 +1,4 @@
-package Characters;
-
-public class ConcreteBoss extends Enemy {
+public class ConcreteBoss extends Enemy{
    
    //standard bosses have the same initial values
    // DMin        = 10;

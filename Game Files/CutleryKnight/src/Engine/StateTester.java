@@ -13,7 +13,7 @@ public class StateTester
       Scanner fin = new Scanner(System.in);
       s.toTitleState();
       
-      while(i != 4)
+      /*while(i != 4)
       {
          System.out.println("\n Choose a state to move to: ");
          System.out.println("1)Title 2)Exploration 3)Battle 4)Exit ");
@@ -42,7 +42,7 @@ public class StateTester
             System.out.println("Bad selection. Try again. ");
          }
          
-      }//end while
+      }//end while */
       
    }//end main
 }//end class
