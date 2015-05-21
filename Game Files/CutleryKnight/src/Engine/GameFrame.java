@@ -20,22 +20,11 @@ public class GameFrame extends JFrame {
         setVisible(true);
     }
     
-    public void changePanel(String in)
+    public void changePanel(String in, IState is)
     {        
         remove(currentPanel);
         
-        if(in.equals("explore"))
-        {
-            currentPanel = new ExplorationGraphics();
-        }
-        else if(in.equals("title"))
-        {
-            currentPanel = new TitleGraphics();
-        }
-        else if(in.equals("battle"))
-        {
-            //add(new BattleGraphics());
-        }
+        currentPanel = is.getGraphics();
         
         add(currentPanel);
         

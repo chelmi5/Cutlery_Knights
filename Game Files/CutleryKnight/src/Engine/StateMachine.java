@@ -42,9 +42,7 @@ public class StateMachine extends UnicastRemoteObject
         currentState.OnExit();
         currentState = s;
         String in = currentState.getType();
-        gameFrame.changePanel(in);
-        //gameFrame = new GameFrame(in);
-        
+        gameFrame.changePanel(in, s);        
         currentState.OnEnter();
     }
     
@@ -57,6 +55,15 @@ public class StateMachine extends UnicastRemoteObject
     public void Render()
     {
         currentState.Render();
+        
+        if(currentState.getChange() == true)
+        {
+            System.out.println("State machine got true");
+            if(currentState.getType().equals("title"))
+            {
+               this.toExplorationState();
+            }
+        }
     }
     
     public void toTitleState()

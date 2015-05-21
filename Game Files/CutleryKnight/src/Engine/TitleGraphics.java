@@ -18,17 +18,19 @@ public class TitleGraphics extends AGraphics implements ActionListener {
     private Timer timer;
     private BackgroundImage bg;
     private String type;
+    private IState state;
 
-    public TitleGraphics() {
+    public TitleGraphics(IState i) {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
 
-        //sprite = new CharacterSprite();
         bg = new BackgroundImage();
         type = "title";
+        
+        state = i;
 
         timer = new Timer(5, this);
         timer.start();
@@ -73,9 +75,10 @@ public class TitleGraphics extends AGraphics implements ActionListener {
             {  
                //Change states
                System.out.println("Pressed enter or 1!");
+               state.Update();
             }
             //bg.keyPressed(e);
         }
-    }
+    } 
 
 }

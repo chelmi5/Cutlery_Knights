@@ -18,8 +18,9 @@ public class ExplorationGraphics extends AGraphics implements ActionListener {
     private Timer timer;
     private CharacterSprite sprite;
     private String type;
+    private IState state;
 
-    public ExplorationGraphics() {
+    public ExplorationGraphics(IState i) {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
@@ -28,6 +29,8 @@ public class ExplorationGraphics extends AGraphics implements ActionListener {
 
         sprite = new CharacterSprite();
         type = "explore";
+        
+        state = i;
 
         timer = new Timer(5, this);
         timer.start();
@@ -64,6 +67,7 @@ public class ExplorationGraphics extends AGraphics implements ActionListener {
 
         public void keyPressed(KeyEvent e) {
             sprite.keyPressed(e);
+
         }
     }
 
