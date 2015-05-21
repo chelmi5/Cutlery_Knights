@@ -1,4 +1,6 @@
-public class ConcreteEnemy extends Enemy{
+package Characters;
+
+public class ConcreteEnemy extends Enemy {
    
    //standard enemies have the same initial values
    // DMin        = 5;

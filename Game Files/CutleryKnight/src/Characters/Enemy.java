@@ -1,9 +1,11 @@
-import java.util.*;
+package Characters;
+
+import Objects.Stats;
 
 public abstract class Enemy{
 
    public   String   enemyName;
-   private  Stats    stats;
+   private Stats stats;
    private  int      damageRangeMin;
    private  int      damageRangeMax;
    private  double   percentToDefend;

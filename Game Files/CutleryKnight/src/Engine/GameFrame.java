@@ -1,5 +1,4 @@
 package Engine;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -11,17 +10,23 @@ public class GameFrame extends JFrame {
         if(t.equals("explore"))
         {
             currentPanel = new ExplorationGraphics();
+            add(currentPanel);
         }
         else if(t.equals("title"))
         {
             currentPanel = new TitleGraphics();
+            add(currentPanel);
         }
         else if(t.equals("battle"))
         {
             //add(new BattleGraphics());
+            add(currentPanel);
         }
-        
-        add(currentPanel);
+        else
+        {
+            System.out.println("Planel did not get added.");
+        }
+
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1600, 925); 
@@ -32,28 +37,34 @@ public class GameFrame extends JFrame {
     }
     
     public void changePanel(String in)
-    {        
-        remove(currentPanel);
+    {
         
         if(in.equals("explore"))
         {
+            remove(currentPanel);
             currentPanel = new ExplorationGraphics();
+            add(currentPanel);
         }
         else if(in.equals("title"))
         {
+            remove(currentPanel);
             currentPanel = new TitleGraphics();
+            add(currentPanel);
         }
         else if(in.equals("battle"))
         {
+            remove(currentPanel);
             //add(new BattleGraphics());
+            add(currentPanel);
         }
-        
-        add(currentPanel);
+        else
+        {
+            System.out.println("Change Panel did not get updated");
+        }
         
         //revalidate(); // For Java 1.7 or above.
         getContentPane().validate(); // For Java 1.6 or below.
-        repaint(); 
-
+        repaint();
     }
    /*
     public static void main(String[] args) {
