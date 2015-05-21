@@ -16,14 +16,20 @@ public class StateMachine extends UnicastRemoteObject
     
     GameFrame gameFrame;
     
+    //ExplorationGraphics exploreG;
+    //TitleGraphics titleG;
+    
     public StateMachine() throws RemoteException//String location) throws RemoteException
     {
          titleState = new TitleState(this);
          explorationState = new ExplorationState(this);
          battleState = new BattleState(this);
          
+         //titleG = titleState.getGraphics();
+         //exploreG = explorationState.getGraphics();
+         
          currentState = new EmptyState(this);
-         gameFrame = new GameFrame("title");
+         gameFrame = new GameFrame(titleState);
          
          this.location = "";
          System.out.println("State Machine initialized.");

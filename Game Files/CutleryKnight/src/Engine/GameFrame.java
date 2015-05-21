@@ -6,27 +6,16 @@ import javax.swing.JPanel;
 public class GameFrame extends JFrame {
     public JPanel currentPanel;
 
-    public GameFrame(String t) {
+    public GameFrame(IState is) {
                 
-        if(t.equals("explore"))
-        {
-            currentPanel = new ExplorationGraphics();
-        }
-        else if(t.equals("title"))
-        {
-            currentPanel = new TitleGraphics();
-        }
-        else if(t.equals("battle"))
-        {
-            //add(new BattleGraphics());
-        }
+        currentPanel = is.getGraphics();
         
         add(currentPanel);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1600, 925); 
         setLocationRelativeTo(null);
-        setTitle("Test Moving");
+        setTitle("Cutlery Knights");
         setResizable(false);
         setVisible(true);
     }

@@ -11,9 +11,9 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.*;
 
-
-public class ExplorationGraphics extends JPanel implements ActionListener {
+public class ExplorationGraphics extends AGraphics implements ActionListener {
 
     private Timer timer;
     private CharacterSprite sprite;
