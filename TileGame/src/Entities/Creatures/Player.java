@@ -5,17 +5,16 @@ import java.awt.*;
 
 public class Player extends Creature {
 
-    private Game mGame;
 
     public Player(Game game, float x, float y) {
-        super(x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
-        mGame = game;
+        super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
     }
 
     @Override
     public void update() {
         getInput();
         move();
+        mGame.getGameCamera().centerOnEntity(this);
     }
 
     private void getInput() {
@@ -34,5 +33,5 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics paintBrush) {
-        paintBrush.drawImage(Assets.mPlayer, (int)mX, (int)mY, mWidth, mHeight, null);    }
+        paintBrush.drawImage(Assets.mPlayer, (int)(mX -  mGame.getGameCamera().getmXoffset()), (int)(mY -  mGame.getGameCamera().getmYoffset()), mWidth, mHeight, null);    }
 }

@@ -1,4 +1,5 @@
 package Entities;
+import Engine.Game;
 import java.awt.*;
 
 public abstract class Entity {
@@ -6,13 +7,14 @@ public abstract class Entity {
         protected float mX, mY;
         protected int mWidth;
         protected int mHeight;
+        protected Game mGame;
 
-    public Entity(float x, float y, int width, int height){
+    public Entity(Game game, float x, float y, int width, int height){
             mX = x;
             mY = y;
             mWidth = width;
             mHeight = height;
-
+            mGame = game;
         }
 
     public abstract void update();

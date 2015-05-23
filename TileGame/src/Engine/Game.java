@@ -1,5 +1,7 @@
 package Engine;
+
 import Display.*;
+import Entities.Entity;
 import Graphics.*;
 import Input.KeyManager;
 import States.*;
@@ -26,10 +28,9 @@ public class Game implements Runnable {
 
     // Input
     private KeyManager mKeyManager;
-    //private GameCamera gameCamera;
 
-    // private BufferedImage mTestImage;
-    // private SpriteSheet mSheet;
+    // Game Camera
+    private GameCamera mGameCamera;
 
     public Game(String title, int width, int height) {
         mWidth = width;
@@ -44,12 +45,11 @@ public class Game implements Runnable {
         mDisplay.getFrame().addKeyListener(mKeyManager);
         Assets.init();
 
+        mGameCamera = new GameCamera(this, 0, 0);
+
         mGameState = new GameState(this);
         mMenuState = new MenuState(this, mGameState);
         StateManager.setState(mMenuState);
-
-        // mTestImage = ImageLoader.loadImage("/res1/textures/spritesheet.png");
-        // mSheet = new SpriteSheet(mTestImage);
     }
 
     private void update() {
@@ -71,8 +71,6 @@ public class Game implements Runnable {
         mPaintBrush.clearRect(0, 0, mWidth, mHeight);
 
         // Draw here
-        // mPaintBrush.drawImage(mSheet.crop(0,1155,45,45),0,0,null);
-        // mPaintBrush.drawImage(Assets.mLevel, mX, 0, null);
 
         if(StateManager.getCurrentState() != null)
             StateManager.getCurrentState().render(mPaintBrush);
@@ -95,7 +93,7 @@ public class Game implements Runnable {
         long timer = 0;
         int ticks = 0;
 
-        while (mRunning) { // Game loop
+        while (mRunning) { // Engine.Game loop
             now = System.nanoTime();
             delta += (now - lastTime) / timePerUpdate; // delta tells us how much time we need to wait
             timer += now -lastTime;
@@ -122,9 +120,9 @@ public class Game implements Runnable {
         return mKeyManager;
     }
 
-//    public GameCamera getGameCamera(){
-//        return gameCamera;
-//    }
+    public GameCamera getGameCamera(){
+        return mGameCamera;
+    }
 
     public int getWidth(){
         return mWidth;

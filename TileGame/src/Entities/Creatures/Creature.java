@@ -1,31 +1,43 @@
 package Entities.Creatures;
+import Engine.Game;
 import Entities.Entity;
+import States.StateManager;
+import Tile.Tile;
+import Map.Map;
+import java.awt.*;
 
 public abstract class Creature extends Entity {
 
     public static final int DEFAULT_HEALTH = 100;
     public static final float DEFAULT_SPEED = 3.0f;
-    public static final int DEFAULT_CREATURE_WIDTH = 100;
-    public static final int DEFAULT_CREATURE_HEIGHT =  200;
+    public static final int DEFAULT_CREATURE_WIDTH = 50;
+    public static final int DEFAULT_CREATURE_HEIGHT =  100;
 
     protected int mHealth;
     protected float mSpeed;
     protected float xMove;
     protected float yMove;
 
-    public Creature(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    private Map mMap;
+
+    // Colision Rectatangle
+    private Rectangle mCollisionTangle;
+
+    public Creature(Game game, float x, float y, int width, int height) {
+        super(game, x, y, width, height);
         mHealth = DEFAULT_HEALTH;
         mSpeed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
+        mCollisionTangle = new Rectangle(mWidth, mHeight);
     }
 
     public void move() {
-        mX += xMove;
-        mY += yMove;
+        //if (!collision((int) xMove,0))
+            mX += xMove;
+        //if (!collision(0, (int)yMove))
+            mY += yMove;
     }
-
 
     public float getxMove() {
         return xMove;

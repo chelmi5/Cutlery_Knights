@@ -13,7 +13,7 @@ public class GameState extends State {
         super(game);
         // takes in starting position
         mPlayer = new Player(game, 100, 100);
-        world = new Map("map1.txt");
+        world = new Map(game, "map1.txt");
     }
 
     @Override
@@ -26,5 +26,9 @@ public class GameState extends State {
     public void render(Graphics paintBrush) {
         world.render(paintBrush);
         mPlayer.render(paintBrush);
+    }
+
+    public Map getWorld() {
+        return world;
     }
 }

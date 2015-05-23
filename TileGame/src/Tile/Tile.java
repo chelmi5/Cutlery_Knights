@@ -5,11 +5,10 @@ import java.awt.image.BufferedImage;
 public class Tile {
 
     // Static maps
-
     public static Tile[] mTiles = new Tile[256];
     public static Tile floorTile = new FloorTile(0);
-    public static Tile woodTile = new WallTile(1);
-    public static Tile WallTile = new WoodTile(2);
+    public static Tile woodTile = new WallTile(2);
+    public static Tile WallTile = new WoodTile(1);
 
     // CLASS
 

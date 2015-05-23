@@ -13,7 +13,7 @@ public class MenuState extends State {
     }
 
     public void render(Graphics paintBrush) {
-        paintBrush.drawImage(Assets.mMainScreen, 0, 0, null);
+        paintBrush.drawImage(Assets.mMainScreen, 0, 0, 1200, 725, null);
     }
 
     public void update() {
