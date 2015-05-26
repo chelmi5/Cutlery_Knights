@@ -1,5 +1,9 @@
 package Objects;
 
-public interface Item {
-    void displayName();
+public abstract class Item {
+    protected String name;
+    protected String description;
+    
+    public abstract void action();
+    //should perform an action like add xp
 }
