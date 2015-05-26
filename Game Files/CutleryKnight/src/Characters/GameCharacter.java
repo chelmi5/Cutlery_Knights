@@ -19,11 +19,11 @@ public abstract class GameCharacter {
         mDefend.defend();
     }
 
-    public void setPlayGuitar(AttackBehavior attacking) {
+    public void setAttack(AttackBehavior attacking) {
         mAttack = attacking;
     }
 
-    public void setPlaySolo(DefendBehavior defeding) {
+    public void setDefend(DefendBehavior defeding) {
         mDefend = defeding;
     }
 }

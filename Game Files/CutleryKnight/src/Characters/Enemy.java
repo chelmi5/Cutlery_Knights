@@ -3,11 +3,11 @@ import Objects.Stats;
 
 public abstract class Enemy{
 
-   public   String   enemyName;
+   public   String enemyName;
    private Stats mStats;
-   private  int      damageRangeMin;
-   private  int      damageRangeMax;
-   private  double   percentToDefend;
+   private  int damageRangeMin;
+   private  int damageRangeMax;
+   private  double percentToDefend;
    
    public Enemy(String enemyName, int DMin, int DMax, double percentToDefend){
       this.damageRangeMin  = DMin;
