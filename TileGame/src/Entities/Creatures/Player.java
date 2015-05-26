@@ -1,6 +1,6 @@
 package Entities.Creatures;
-import Graphics.Assets;
 import Engine.Game;
+import Graphics.GraphicAssets;
 import java.awt.*;
 
 public class Player extends Creature {
@@ -33,5 +33,5 @@ public class Player extends Creature {
 
     @Override
     public void render(Graphics paintBrush) {
-        paintBrush.drawImage(Assets.mPlayer, (int)(mX -  mGame.getGameCamera().getmXoffset()), (int)(mY -  mGame.getGameCamera().getmYoffset()), mWidth, mHeight, null);    }
+        paintBrush.drawImage(GraphicAssets.mPlayer, (int)(mX -  mGame.getGameCamera().getXoffset()), (int)(mY -  mGame.getGameCamera().getYoffset()), mWidth, mHeight, null);    }
 }

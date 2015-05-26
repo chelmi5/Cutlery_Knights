@@ -13,7 +13,7 @@ public class Map {
     private int mSpawnX;
     private int mSpawnY;
 
-    public int[][] tileArray;
+    private int[][] tileArray;
 
     public Map(Game game, String path) {
         mGame = game;
@@ -26,15 +26,15 @@ public class Map {
 
     public void render(Graphics paintBrush) {
 
-        int xStart = Math.max(0, (int)mGame.getGameCamera().getmXoffset() / Tile.TILEWIDTH);
-        int xEnd = Math.min(mWidth, (int)(mGame.getGameCamera().getmXoffset() + mGame.getWidth())-1/ Tile.TILEWIDTH);
-        int yStart = Math.max(0, (int)mGame.getGameCamera().getmYoffset() / Tile.TILEHEIGHT);
-        int yEnd = Math.min(mHeight, (int)(mGame.getGameCamera().getmYoffset() + mGame.getHeight())-1/ Tile.TILEHEIGHT);
+        int xStart = Math.max(0, (int)mGame.getGameCamera().getXoffset() / Tile.TILEWIDTH);
+        int xEnd = Math.min(mWidth, (int)(mGame.getGameCamera().getXoffset() + mGame.getWidth())-1/ Tile.TILEWIDTH);
+        int yStart = Math.max(0, (int)mGame.getGameCamera().getYoffset() / Tile.TILEHEIGHT);
+        int yEnd = Math.min(mHeight, (int)(mGame.getGameCamera().getYoffset() + mGame.getHeight())-1/ Tile.TILEHEIGHT);
 
         for (int y = yStart; y < yEnd; y++) {
             for (int x = xStart; x < xEnd; x++) {
-                getTile(x, y).render(paintBrush, (int) (x * Tile.TILEWIDTH - mGame.getGameCamera().getmXoffset())
-                        , (int) (y * Tile.TILEHEIGHT - mGame.getGameCamera().getmYoffset()));
+                getTile(x, y).render(paintBrush, (int) (x * Tile.TILEWIDTH - mGame.getGameCamera().getXoffset())
+                        , (int) (y * Tile.TILEHEIGHT - mGame.getGameCamera().getYoffset()));
             }
         }
     }
@@ -49,13 +49,17 @@ public class Map {
         return tempTile;
     }
 
-    public Tile getTile(int tileIndex) {
-
+    public boolean isMoveable(int x, int y) {
+        int tileIndex = tileArray[x][y];
         Tile tempTile = Tile.mTiles[tileIndex];
-        if (tempTile == null)
-            return Tile.floorTile;
 
-        return tempTile;
+        if (tempTile.isSolid())
+            return true;
+        return false;
+    }
+
+    public int[][] getTileArray() {
+        return tileArray;
     }
 
     private void loadMap(String path) {

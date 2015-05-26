@@ -7,13 +7,10 @@ public class KeyManager implements KeyListener{
     private boolean[] mKeys;
     public boolean up;
     public boolean wup;
-
     public boolean down;
     public boolean sdown;
-
     public boolean right;
     public boolean dright;
-
     public boolean left;
     public boolean aleft;
 
@@ -41,7 +38,7 @@ public class KeyManager implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        // nothing yet
     }
 
     @Override

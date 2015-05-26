@@ -1,11 +1,9 @@
 package Tile;
-
-import Graphics.Assets;
+import Graphics.GraphicAssets;
 
 public class WoodTile extends Tile {
 
     public WoodTile(int id) {
-        super(Assets.mWood, id);
+        super(GraphicAssets.mWood, id);
     }
-
 }

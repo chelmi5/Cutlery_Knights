@@ -25,19 +25,19 @@ public class GameCamera {
         mYoffset += yMover;
     }
 
-    public float getmXoffset() {
+    public float getXoffset() {
         return mXoffset;
     }
 
-    public void setmXoffset(float mXoffset) {
+    public void setXoffset(float mXoffset) {
         this.mXoffset = mXoffset;
     }
 
-    public float getmYoffset() {
+    public float getYoffset() {
         return mYoffset;
     }
 
-    public void setmYoffset(float mYoffset) {
+    public void setYoffset(float mYoffset) {
         this.mYoffset = mYoffset;
     }
 }

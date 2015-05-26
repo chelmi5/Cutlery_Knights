@@ -2,7 +2,7 @@ package Tile;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Tile {
+public abstract class Tile {
 
     // Static maps
     public static Tile[] mTiles = new Tile[256];

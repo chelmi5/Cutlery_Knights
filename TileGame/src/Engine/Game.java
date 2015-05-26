@@ -1,7 +1,5 @@
 package Engine;
-
 import Display.*;
-import Entities.Entity;
 import Graphics.*;
 import Input.KeyManager;
 import States.*;
@@ -11,20 +9,16 @@ import java.awt.image.BufferStrategy;
 public class Game implements Runnable {
 
     private Display mDisplay;
-
     private int mWidth;
     private int mHeight;
     private String mTitle;
-
     private boolean mRunning = false;
     private Thread mThread;
-
     private BufferStrategy mBs; // This is a hidden screen that the computer uses to preload
     private Graphics mPaintBrush;
 
     // Initialize all the States
-    private State mGameState;
-    private State mMenuState;
+    private StateManager mStateManager;
 
     // Input
     private KeyManager mKeyManager;
@@ -43,13 +37,11 @@ public class Game implements Runnable {
     private void init() {
         mDisplay = new Display(mTitle, mWidth, mHeight);
         mDisplay.getFrame().addKeyListener(mKeyManager);
-        Assets.init();
+        GraphicAssets.init();
 
         mGameCamera = new GameCamera(this, 0, 0);
 
-        mGameState = new GameState(this);
-        mMenuState = new MenuState(this, mGameState);
-        StateManager.setState(mMenuState);
+        mStateManager = new StateManager(this);
     }
 
     private void update() {
@@ -58,6 +50,7 @@ public class Game implements Runnable {
         if(StateManager.getCurrentState() != null)
             StateManager.getCurrentState().update();
     }
+
     private void render() { // draw stuff to the screen
         mBs = mDisplay.getCanvas().getBufferStrategy();
         if (mBs == null) {
@@ -107,7 +100,7 @@ public class Game implements Runnable {
             }
 
             if(timer >= 1000000000) {
-                System.out.println("Ticks and Frames: " + ticks);
+                System.out.println("Frames Per Second: " + ticks);
                 ticks = 0;
                 timer = 0;
             }
@@ -152,4 +145,5 @@ public class Game implements Runnable {
 
         }
     }
+
 }

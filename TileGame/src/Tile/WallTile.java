@@ -1,10 +1,10 @@
 package Tile;
-import Graphics.Assets;
+import Graphics.GraphicAssets;
 
 public class WallTile extends Tile {
 
     public WallTile(int id) {
-        super(Assets.mWall, id);
+        super(GraphicAssets.mWall, id);
     }
 
     @Override

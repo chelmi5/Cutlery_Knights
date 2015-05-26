@@ -7,7 +7,6 @@ public class Display {
 
     private JFrame mFrame;
     private Canvas mCanvas;
-
     private String mTitle;
     private int mWidth;
     private int mHeight;

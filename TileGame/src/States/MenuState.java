@@ -1,30 +1,32 @@
 package States;
 import Engine.Game;
-import Graphics.Assets;
 import java.awt.*;
 
-public class MenuState extends State {
+public class MenuState implements State {
 
-    private State switchStateOne;
+    private Game mGame;
+    private StateManager mStateMager;
+    private State mEndState;
+    private State mExplorationState;
+    private State mBattleState;
+    private State mTileState;
 
-    public MenuState(Game game, State switchState) {
-        super(game);
-        switchStateOne = switchState;
+    public MenuState(Game game, StateManager stateManager) {
+        mGame = game;
+        mStateMager = stateManager;
+        mEndState = mStateMager.getEndState();
+        mExplorationState = mStateMager.getExplorationState();
+        mBattleState = mStateMager.getBattleState();
+        mTileState = mStateMager.getTitleState();
     }
 
-    public void render(Graphics paintBrush) {
-        paintBrush.drawImage(Assets.mMainScreen, 0, 0, 1200, 725, null);
-    }
-
+    @Override
     public void update() {
-        getInput();
+
     }
 
-    public void getInput() {
-        if(mGame.getKeyManager().one)
-        {
-            StateManager.setState(switchStateOne);
-            System.out.println("Yahoo");
-        }
+    @Override
+    public void render(Graphics g) {
+
     }
 }

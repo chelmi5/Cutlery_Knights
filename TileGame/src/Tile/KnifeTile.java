@@ -1,10 +1,10 @@
 package Tile;
-import Graphics.Assets;
+import Graphics.GraphicAssets;
 
 public class KnifeTile extends Tile {
 
     public KnifeTile(int id) {
-        super(Assets.mKnife, id);
+        super(GraphicAssets.mKnife, id);
     }
 
     @Override
