@@ -1,10 +1,12 @@
 package Characters;
 import Objects.AttackBehavior;
 import Objects.DefendBehavior;
+import Objects.Stats;
 
 public abstract class GameCharacter {
     AttackBehavior mAttack;
     DefendBehavior mDefend;
+    Stats mStats;
 
     public abstract void displayStats();
 
@@ -25,5 +27,9 @@ public abstract class GameCharacter {
 
     public void setDefend(DefendBehavior defeding) {
         mDefend = defeding;
+    }
+    
+    public Stats getmStats(){
+      return mStats;
     }
 }

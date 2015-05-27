@@ -20,6 +20,10 @@ public class Stats {
     public int getHP() {
         return mHP;
     }
+    
+    public void setHP(int hp){
+      mHP = hp;
+    }
 
     public void updateHP(int damage) {
         this.mHP = mHP - damage;

@@ -4,7 +4,7 @@ public class Oregano extends Item {
 
    // reference to the hero who owns the object
    
-   public Oregano(){
+   public Oregano(Character){
       this.name = "Oregano";
       this.description = "Increase damage done by regular attack";
    }

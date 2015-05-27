@@ -1,4 +1,5 @@
 package Objects;
+import Characters.GameCharacter;
 
 public class Rosemary extends Item {
 
@@ -9,7 +10,7 @@ public class Rosemary extends Item {
       this.description = "Increases health by 10 points";
    }
    
-   public void action(){
-     // Hero.stats.addHP(10); 
+   public void action(GameCharacter hero){
+     hero.getmStats().setHP(hero.getmStats().getHP()+10);
    }
 }

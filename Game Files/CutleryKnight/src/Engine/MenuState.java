@@ -8,6 +8,7 @@ public class MenuState implements IState{
    private     String         type;
    private     boolean        change;
    //reference to the party called party
+   //reference to inventory called inventory
       
    public MenuState(StateMachine s){
       this.stateMachine = s;
@@ -48,9 +49,10 @@ public class MenuState implements IState{
    public void Display(){
       System.out.println("Game Paused");
       
-     // party.displayStats();
+      //party.displayStats();
       //party.displayInvitory();
       //Functional Inventory
+         //concrete inventory has 
       
       //To Title Menu (lose all progress)
       // switch to title menu state, like re launching the game

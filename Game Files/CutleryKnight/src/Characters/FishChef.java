@@ -5,8 +5,6 @@ import Objects.Stats;
 
 public class FishChef extends GameCharacter {
 
-    private Stats mStats;
-
     public FishChef() {
         mAttack = new SpoonAttack();
         mDefend = new PieTin();
