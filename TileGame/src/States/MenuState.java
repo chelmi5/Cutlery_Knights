@@ -1,10 +1,13 @@
 package States;
 import Engine.Game;
+import Entities.Creatures.Player;
+
 import java.awt.*;
 
 public class MenuState implements State {
 
     private Game mGame;
+    private Player mPlayer;
     private StateManager mStateMager;
     private State mEndState;
     private State mExplorationState;
@@ -18,6 +21,7 @@ public class MenuState implements State {
         mExplorationState = mStateMager.getExplorationState();
         mBattleState = mStateMager.getBattleState();
         mTileState = mStateMager.getTitleState();
+        mPlayer = stateManager.getExplorationState().getPlayer();
     }
 
     @Override

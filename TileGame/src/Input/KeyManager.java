@@ -5,35 +5,46 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener{
 
     private boolean[] mKeys;
+
+    public boolean escape;
+    public boolean enter;
+    public boolean backspace;
+
     public boolean up;
-    public boolean wup;
     public boolean down;
-    public boolean sdown;
     public boolean right;
-    public boolean dright;
     public boolean left;
-    public boolean aleft;
 
     public boolean one;
+    public boolean two;
+    public boolean three;
+    public boolean four;
+    public boolean five;
+
+    public boolean jay;
 
     public KeyManager() {
         mKeys = new boolean[256];
     }
 
     public void update() {
-        wup = mKeys[KeyEvent.VK_W];
-        up = mKeys[KeyEvent.VK_UP];
-
-        sdown = mKeys[KeyEvent.VK_S];
-        down = mKeys[KeyEvent.VK_DOWN];
-
-        aleft = mKeys[KeyEvent.VK_A];
-        left = mKeys[KeyEvent.VK_LEFT];
-
-        dright = mKeys[KeyEvent.VK_D];
-        right = mKeys[KeyEvent.VK_RIGHT];
+        up = mKeys[KeyEvent.VK_UP] || mKeys[KeyEvent.VK_W];
+        down = mKeys[KeyEvent.VK_DOWN] ||  mKeys[KeyEvent.VK_S];
+        left = mKeys[KeyEvent.VK_LEFT] || mKeys[KeyEvent.VK_A];
+        right = mKeys[KeyEvent.VK_RIGHT] ||  mKeys[KeyEvent.VK_D];
 
         one = mKeys[KeyEvent.VK_1];
+        two = mKeys[KeyEvent.VK_2];
+        three = mKeys[KeyEvent.VK_3];
+        four = mKeys[KeyEvent.VK_4];
+        five = mKeys[KeyEvent.VK_5];
+
+        escape = mKeys[KeyEvent.VK_ESCAPE];
+        enter = mKeys[KeyEvent.VK_ENTER];
+        backspace = mKeys[KeyEvent.VK_BACK_SPACE];
+
+        jay = mKeys[KeyEvent.VK_J];
+
     }
 
     @Override

@@ -40,22 +40,17 @@ public class Map {
     }
 
     public Tile getTile(int x, int y) {
-        int tileIndex = tileArray[x][y];
+        try{
+            int tileIndex = tileArray[x][y];
 
-        Tile tempTile = Tile.mTiles[tileIndex];
-        if (tempTile == null)
-            return Tile.floorTile;
+            Tile tempTile = Tile.mTiles[tileIndex];
+            if (tempTile == null)
+                return Tile.floorTile;
 
-        return tempTile;
-    }
-
-    public boolean isMoveable(int x, int y) {
-        int tileIndex = tileArray[x][y];
-        Tile tempTile = Tile.mTiles[tileIndex];
-
-        if (tempTile.isSolid())
-            return true;
-        return false;
+            return tempTile;
+        }catch (ArrayIndexOutOfBoundsException e){
+            return null;
+        }
     }
 
     public int[][] getTileArray() {

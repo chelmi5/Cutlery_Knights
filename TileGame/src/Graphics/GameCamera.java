@@ -9,15 +9,15 @@ public class GameCamera {
     private float mYoffset;
     private Game mGame;
 
-    public GameCamera (Game game, float xoffset, float yoffset) {
+    public GameCamera (Game game, int xoffset, int yoffset) {
         mGame = game;
         mXoffset = xoffset;
         mYoffset = xoffset;
     }
 
     public void centerOnEntity(Entity character) {
-        mXoffset = character.getX() - mGame.getWidth() / 2 + character.getWidth()/2;
-        mYoffset = character.getY() - mGame.getHeight() / 2 + character.getHeight()/2;
+        mXoffset = (int)character.getX() - mGame.getWidth() / 2 + character.getWidth()/2;
+        mYoffset = (int)character.getY() - mGame.getHeight() / 2 + character.getHeight()/2;
     }
 
     public void move(float xMover, float yMover) {
@@ -29,7 +29,7 @@ public class GameCamera {
         return mXoffset;
     }
 
-    public void setXoffset(float mXoffset) {
+    public void setXoffset(int mXoffset) {
         this.mXoffset = mXoffset;
     }
 
@@ -37,7 +37,7 @@ public class GameCamera {
         return mYoffset;
     }
 
-    public void setYoffset(float mYoffset) {
+    public void setYoffset(int mYoffset) {
         this.mYoffset = mYoffset;
     }
 }

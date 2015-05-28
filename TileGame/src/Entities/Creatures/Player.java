@@ -1,13 +1,15 @@
 package Entities.Creatures;
 import Engine.Game;
 import Graphics.GraphicAssets;
+import Map.Map;
+
 import java.awt.*;
 
 public class Player extends Creature {
 
 
-    public Player(Game game, float x, float y) {
-        super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+    public Player(Game game, float x, float y, Map mMap) {
+        super(game, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT, mMap);
     }
 
     @Override
@@ -21,17 +23,18 @@ public class Player extends Creature {
         xMove = 0;
         yMove = 0;
 
-        if(mGame.getKeyManager().up || mGame.getKeyManager().wup)
+        if(mGame.getKeyManager().up)
             yMove = -mSpeed;
-        if(mGame.getKeyManager().down || mGame.getKeyManager().sdown)
+        if(mGame.getKeyManager().down)
             yMove = +mSpeed;
-        if(mGame.getKeyManager().left || mGame.getKeyManager().aleft)
+        if(mGame.getKeyManager().left)
             xMove = -mSpeed;
-        if(mGame.getKeyManager().right || mGame.getKeyManager().dright)
+        if(mGame.getKeyManager().right)
             xMove =+ mSpeed;
     }
 
     @Override
     public void render(Graphics paintBrush) {
-        paintBrush.drawImage(GraphicAssets.mPlayer, (int)(mX -  mGame.getGameCamera().getXoffset()), (int)(mY -  mGame.getGameCamera().getYoffset()), mWidth, mHeight, null);    }
+        paintBrush.drawImage(GraphicAssets.mPlayerIcon, (int)(mX -  mGame.getGameCamera().getXoffset()), (int)(mY -  mGame.getGameCamera().getYoffset()), mWidth, mHeight, null);
+    }
 }

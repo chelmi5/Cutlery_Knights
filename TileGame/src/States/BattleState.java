@@ -1,7 +1,7 @@
 package States;
 
 import Engine.Game;
-
+import Graphics.GraphicAssets;
 import java.awt.*;
 
 public class BattleState implements State {
@@ -11,11 +11,11 @@ public class BattleState implements State {
     private State mMenuState;
     private State mEndState;
 
-    public BattleState(Game game, State expolorationState, State menuState, State endState) {
+    public BattleState(Game game) {
         mGame = game;
-        mExplorationState = expolorationState;
-        mMenuState = menuState;
-        mEndState = endState;
+        //mExplorationState = expolorationState;
+        //mMenuState = menuState;
+        //mEndState = endState;
     }
 
     @Override
@@ -24,7 +24,9 @@ public class BattleState implements State {
     }
 
     @Override
-    public void render(Graphics g) {
-
+    public void render(Graphics paintBrush) {
+        paintBrush.drawImage(GraphicAssets.mBackground, 0, 0, 1200, 725, null);
+        paintBrush.drawImage(GraphicAssets.choppingBlock, 800, 75, 400,200, null);
+        paintBrush.drawImage(GraphicAssets.choppingBlock, -10, 250, 400,200, null);
     }
 }

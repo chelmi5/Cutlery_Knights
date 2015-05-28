@@ -7,8 +7,9 @@ public abstract class Tile {
     // Static maps
     public static Tile[] mTiles = new Tile[256];
     public static Tile floorTile = new FloorTile(0);
-    public static Tile woodTile = new WallTile(2);
-    public static Tile WallTile = new WoodTile(1);
+
+    public static Tile woodTile = new WoodTile(1);
+    public static Tile wallTile = new WallTile(2);
 
     // CLASS
 

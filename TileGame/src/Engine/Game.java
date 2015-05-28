@@ -2,6 +2,7 @@ package Engine;
 import Display.*;
 import Graphics.*;
 import Input.KeyManager;
+import Input.MouseManager;
 import States.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -22,6 +23,7 @@ public class Game implements Runnable {
 
     // Input
     private KeyManager mKeyManager;
+    private MouseManager mMouseManager;
 
     // Game Camera
     private GameCamera mGameCamera;
@@ -31,12 +33,15 @@ public class Game implements Runnable {
         mHeight = height;
         mTitle = title;
         mKeyManager = new KeyManager();
+        mMouseManager = new MouseManager();
     }
 
     // initilizes all of our graphics
     private void init() {
         mDisplay = new Display(mTitle, mWidth, mHeight);
         mDisplay.getFrame().addKeyListener(mKeyManager);
+        mDisplay.getFrame().addMouseListener(mMouseManager);
+        //mDisplay.getFrame().addMouseMotionListener(mMouseManager);
         GraphicAssets.init();
 
         mGameCamera = new GameCamera(this, 0, 0);
@@ -46,6 +51,7 @@ public class Game implements Runnable {
 
     private void update() {
         mKeyManager.update();
+        mMouseManager.update();
 
         if(StateManager.getCurrentState() != null)
             StateManager.getCurrentState().update();
@@ -70,7 +76,7 @@ public class Game implements Runnable {
 
         // End draw
         mBs.show();
-        mPaintBrush.dispose();
+        //mPaintBrush.dispose();
     }
 
     @Override
@@ -113,8 +119,16 @@ public class Game implements Runnable {
         return mKeyManager;
     }
 
+    public MouseManager getMouseManager() {
+        return mMouseManager;
+    }
+
     public GameCamera getGameCamera(){
         return mGameCamera;
+    }
+
+    public Graphics getPaintBrush(){
+        return mPaintBrush;
     }
 
     public int getWidth(){
@@ -144,6 +158,7 @@ public class Game implements Runnable {
         } catch (InterruptedException e) {
 
         }
+        mPaintBrush.dispose();
     }
 
 }

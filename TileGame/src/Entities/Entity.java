@@ -24,7 +24,7 @@ public abstract class Entity {
         return mX;
     }
 
-    public void setX(float mX) {
+    public void setX(int mX) {
         this.mX = mX;
     }
 
@@ -32,11 +32,11 @@ public abstract class Entity {
         return mY;
     }
 
-    public void setY(float mY) {
+    public void setY(int mY) {
         this.mY = mY;
     }
 
-    public int getWidth() {
+    public float getWidth() {
         return mWidth;
     }
 
@@ -44,7 +44,7 @@ public abstract class Entity {
         mWidth = width;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return mHeight;
     }
 

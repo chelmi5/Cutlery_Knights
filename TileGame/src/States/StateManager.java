@@ -1,10 +1,11 @@
 package States;
 import Engine.Game;
+import java.awt.*;
 
 public class StateManager {
 
-    private State mExplorationState;
-    private State mTitleState;
+    private ExplorationState mExplorationState;
+    private static State mTitleState;
     private State mEndState;
     private State mPartySeclectionState;
     private State mBattleState;
@@ -12,12 +13,13 @@ public class StateManager {
     private static State currentState = null;
 
     public StateManager(Game game) {
+        mBattleState = new BattleState(game);
+        mExplorationState = new ExplorationState(game, mMenuState, mEndState, this);
         mMenuState = new MenuState(game, this);
-        mExplorationState = new ExplorationState(game, mMenuState, mEndState);
-        mPartySeclectionState = new PartySelectState(game,mExplorationState);
-        mTitleState = new TitleState(game, mExplorationState);                  // This will need to be changed to mPartySelection
+        mPartySeclectionState = new PartySelectState(game, mExplorationState, this);
+        mTitleState = new TitleState(game, mPartySeclectionState);                  // This will need to be changed to mPartySelection
         mEndState = new EndState(game, mTitleState);
-        mBattleState = new BattleState(game, mExplorationState, mMenuState, mEndState);
+        mBattleState = new BattleState(game);
         setState(mTitleState);
     }
 
@@ -33,12 +35,16 @@ public class StateManager {
         return currentState;
     }
 
-    public State getExplorationState() {
+    public ExplorationState getExplorationState() {
         return mExplorationState;
     }
 
     public State getTitleState() {
         return mTitleState;
+    }
+
+    public static void setTitleState(State titleState) {
+        mTitleState = titleState;
     }
 
     public State getEndState() {
