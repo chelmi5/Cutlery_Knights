@@ -64,7 +64,7 @@ public class PartySelectState implements State{
             partyArray[count] = "";
             count--;
         }
-        if (mGame.getKeyManager().enter)
+        if (mGame.getKeyManager().enter && count == 3)
         {
             StateManager.setState(mExplorationState);
         }
@@ -88,7 +88,7 @@ public class PartySelectState implements State{
         paintBrush.setColor(Color.BLACK);
         paintBrush.drawString("Party Selection", mGame.getWidth() / 3 + 30, 75);
         paintBrush.setFont(font2);
-        paintBrush.drawString("(Press the number for your Party Choices)", mGame.getWidth() / 3 - 80, 120);
+        paintBrush.drawString("(Choose 3 numbers for your Party Choices)", mGame.getWidth() / 3 - 80, 120);
 
         paintBrush.drawImage(GraphicAssets.mRoost, 120, 125, 120, 280, null);
         paintBrush.drawImage(GraphicAssets.mPastry, 350, 125, 120, 280, null);

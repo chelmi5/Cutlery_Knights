@@ -32,10 +32,10 @@ public class GraphicAssets {
         SpriteSheet cuttingBoard = new SpriteSheet(ImageLoader.loadImage("/res/textures/choppingBlock.png"));
 
         mPlayerIcon = sheet.crop(0,0,mPlayerWidth, mPlayerHeight);
-        mRoost = sheet.crop(0,0,120,mPlayerHeight+62);
-        mPastry = sheet.crop(130,0,110,mPlayerHeight+62);
-        mSaute = sheet.crop(240, 0, 130, mPlayerHeight+62);
-        mVegtable = sheet.crop(380, 0, 120, mPlayerHeight+62);
+        mRoost = sheet.crop(0,0,130,mPlayerHeight+62);
+        mPastry = sheet.crop(130,0,108,mPlayerHeight+62);
+        mSaute = sheet.crop(240, 0, 140, mPlayerHeight+62);
+        mVegtable = sheet.crop(368, 0, 130, mPlayerHeight+62);
         mFish = sheet.crop(500, 0, 100, mPlayerHeight+62);
 
 
