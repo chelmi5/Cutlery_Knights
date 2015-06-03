@@ -1,8 +1,7 @@
 package Map;
 import Engine.Game;
 import Tile.Tile;
-import Utilitys.FileUtility;
-
+import Utilities.FileUtility;
 import java.awt.*;
 
 public class Map {

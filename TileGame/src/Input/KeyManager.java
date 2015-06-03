@@ -22,6 +22,7 @@ public class KeyManager implements KeyListener{
     public boolean five;
 
     public boolean jay;
+    public boolean kay;
 
     public KeyManager() {
         mKeys = new boolean[256];
@@ -44,7 +45,7 @@ public class KeyManager implements KeyListener{
         backspace = mKeys[KeyEvent.VK_BACK_SPACE];
 
         jay = mKeys[KeyEvent.VK_J];
-
+        kay = mKeys[KeyEvent.VK_K];
     }
 
     @Override

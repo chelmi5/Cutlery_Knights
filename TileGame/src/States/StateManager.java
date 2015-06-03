@@ -1,25 +1,25 @@
 package States;
 import Engine.Game;
-import java.awt.*;
 
 public class StateManager {
 
-    private ExplorationState mExplorationState;
+    private State mExplorationState;
     private static State mTitleState;
     private State mEndState;
     private State mPartySeclectionState;
     private State mBattleState;
+    private State mHelpState;
     private State mMenuState;
     private static State currentState = null;
 
     public StateManager(Game game) {
-        mBattleState = new BattleState(game);
-        mExplorationState = new ExplorationState(game, mMenuState, mEndState, this);
+        mBattleState = new BattleState(game, this);
+        mExplorationState = new ExplorationState(game, this);
         mMenuState = new MenuState(game, this);
-        mPartySeclectionState = new PartySelectState(game, mExplorationState, this);
-        mTitleState = new TitleState(game, mPartySeclectionState);                  // This will need to be changed to mPartySelection
-        mEndState = new EndState(game, mTitleState);
-        mBattleState = new BattleState(game);
+        mPartySeclectionState = new PartySelectState(game, this);
+        mTitleState = new TitleState(game, this);                  // This will need to be changed to mPartySelection
+        mEndState = new EndState(game, this);
+        mHelpState = new HelpState(game, this);
         setState(mTitleState);
     }
 
@@ -35,7 +35,11 @@ public class StateManager {
         return currentState;
     }
 
-    public ExplorationState getExplorationState() {
+    public State getPartySeclectionState() {
+        return mPartySeclectionState;
+    }
+
+    public State getExplorationState() {
         return mExplorationState;
     }
 
@@ -53,5 +57,17 @@ public class StateManager {
 
     public State getBattleState() {
         return mBattleState;
+    }
+
+    public State getMenuState() {
+        return mMenuState;
+    }
+
+    public State getHelpState() {
+        return mHelpState;
+    }
+
+    public void setHelpState(State helpState) {
+        mHelpState = helpState;
     }
 }

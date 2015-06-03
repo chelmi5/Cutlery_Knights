@@ -15,7 +15,7 @@ public class GraphicAssets {
     public static BufferedImage mFish;
    // public static BufferedImage mLevel;
     public static BufferedImage mMainScreen;
-   // public static BufferedImage mEnemy;
+    public static BufferedImage mEnemy;
     public static BufferedImage mWall;
     public static BufferedImage mWood;
     public static BufferedImage mFloor;
@@ -41,7 +41,7 @@ public class GraphicAssets {
 
        // mLevel = sheet.crop(0,345,600,447);
         mMainScreen = sheet.crop(0,810,600,345);
-       // mEnemy = sheet.crop(0,1155,45,45);
+        mEnemy = sheet.crop(0,1155,45,45);
 
         choppingBlock = cuttingBoard.crop(0, 0, 430, 210);
 

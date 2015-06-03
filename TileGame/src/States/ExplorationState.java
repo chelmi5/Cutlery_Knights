@@ -1,40 +1,44 @@
 package States;
 import java.awt.*;
 import Engine.Game;
-import Entities.Creatures.Player;
+import Entities.Mobs.*;
+import Entities.Player;
 import Map.Map;
+import Utilities.CodeTools;
 
 public class ExplorationState implements State {
 
     private Player mPlayer;
     private Map mMap;
     private Game mGame;
-    private State mMenuState;
-    private State mEndState;
-    private State mBattleState;
+    private StateManager mStateManager;
+    private Bread bread;
+    private Bread bread2;
 
-    public ExplorationState(Game game, State menuState, State endState, StateManager stateManager) {
+    public ExplorationState(Game game, StateManager stateManager) {
         mGame = game;
-        mMap = new Map(game, "map1.txt");
+        mMap = mGame.getMap();
+        mStateManager = stateManager;
         mPlayer = new Player(game, 100, 100, mMap);
-        mMenuState = menuState;
-        mEndState = endState;
-        mBattleState = stateManager.getBattleState();
+        bread = new Bread(game, 100 + CodeTools.randInt(20, 400), 100 + CodeTools.randInt(20, 400), mMap);
+        bread2 = new Bread(game, 100 + + CodeTools.randInt(200, 600), 100  + CodeTools.randInt(200, 600), mMap);
     }
 
     @Override
     public void update() {
         mMap.update();
         mPlayer.update();
+        bread.update();
+        bread2.update();
 
         if(mGame.getKeyManager().escape)
         {
             System.out.println("GoodBye");
-            System.exit(0);
+            //System.exit(0);
         }
         if (mGame.getKeyManager().jay)
         {
-            StateManager.setState(mBattleState);
+            StateManager.setState(mStateManager.getBattleState());
         }
     }
 
@@ -42,6 +46,8 @@ public class ExplorationState implements State {
     public void render(Graphics paintBrush) {
         mMap.render(paintBrush);
         mPlayer.render(paintBrush);
+        bread.render(paintBrush);
+        bread2.render(paintBrush);
     }
 
     public Player getPlayer() {

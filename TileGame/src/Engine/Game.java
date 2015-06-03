@@ -3,6 +3,7 @@ import Display.*;
 import Graphics.*;
 import Input.KeyManager;
 import Input.MouseManager;
+import Map.Map;
 import States.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -28,12 +29,25 @@ public class Game implements Runnable {
     // Game Camera
     private GameCamera mGameCamera;
 
+    private int mGameScore;
+
+    public Map getMap() {
+        return mMap;
+    }
+
+    private Map mMap;
+
     public Game(String title, int width, int height) {
         mWidth = width;
         mHeight = height;
         mTitle = title;
         mKeyManager = new KeyManager();
         mMouseManager = new MouseManager();
+        mMap = new Map(this, "map1.txt");
+    }
+
+    public int getGameScore() {
+        return mGameScore;
     }
 
     // initilizes all of our graphics
@@ -41,9 +55,7 @@ public class Game implements Runnable {
         mDisplay = new Display(mTitle, mWidth, mHeight);
         mDisplay.getFrame().addKeyListener(mKeyManager);
         mDisplay.getFrame().addMouseListener(mMouseManager);
-        //mDisplay.getFrame().addMouseMotionListener(mMouseManager);
         GraphicAssets.init();
-
         mGameCamera = new GameCamera(this, 0, 0);
 
         mStateManager = new StateManager(this);
@@ -119,16 +131,8 @@ public class Game implements Runnable {
         return mKeyManager;
     }
 
-    public MouseManager getMouseManager() {
-        return mMouseManager;
-    }
-
     public GameCamera getGameCamera(){
         return mGameCamera;
-    }
-
-    public Graphics getPaintBrush(){
-        return mPaintBrush;
     }
 
     public int getWidth(){

@@ -7,26 +7,29 @@ import java.awt.*;
 public class BattleState implements State {
 
     private Game mGame;
-    private State mExplorationState;
-    private State mMenuState;
-    private State mEndState;
+    private StateManager mStateManager;
 
-    public BattleState(Game game) {
+    public BattleState(Game game, StateManager stateManager) {
         mGame = game;
-        //mExplorationState = expolorationState;
-        //mMenuState = menuState;
-        //mEndState = endState;
+        mStateManager = stateManager;
     }
 
     @Override
     public void update() {
-
+        if(mGame.getKeyManager().escape)
+        {
+            StateManager.setState(mStateManager.getExplorationState());
+        }
+        if (mGame.getKeyManager().kay)
+        {
+            StateManager.setState(mStateManager.getEndState());
+        }
     }
 
     @Override
     public void render(Graphics paintBrush) {
         paintBrush.drawImage(GraphicAssets.mBackground, 0, 0, 1200, 725, null);
-        paintBrush.drawImage(GraphicAssets.choppingBlock, 800, 75, 400,200, null);
-        paintBrush.drawImage(GraphicAssets.choppingBlock, -10, 250, 400,200, null);
+        paintBrush.drawImage(GraphicAssets.choppingBlock, 800, 75, 400, 200, null);
+        paintBrush.drawImage(GraphicAssets.choppingBlock, -10, 250, 400, 200, null);
     }
 }

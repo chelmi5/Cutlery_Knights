@@ -7,17 +7,15 @@ public class PartySelectState implements State{
 
     private Game mGame;
     private int count = 0;
-    private State mExplorationState;
-    private State mTitleState;
+    private StateManager mStateManager;
     private Rectangle mPlayButton;
     private Rectangle mHelpButton;
     private Rectangle mQuitButton;
     private String[] partyArray = new String[3];
 
-    public PartySelectState(Game game, State explorationState, StateManager stateManager) {
+    public PartySelectState(Game game, StateManager stateManager) {
         mGame = game;
-        mExplorationState = explorationState;
-        mTitleState = stateManager.getTitleState();
+        mStateManager = stateManager;
         mPlayButton = new Rectangle((mGame.getWidth() / 3) + 120, 150, 100, 50 );
         mHelpButton = new Rectangle((mGame.getWidth() / 3) + 120, 250, 100, 50 );
         mQuitButton = new Rectangle((mGame.getWidth() / 3) + 120, 350, 100, 50 );
@@ -66,7 +64,7 @@ public class PartySelectState implements State{
         }
         if (mGame.getKeyManager().enter && count == 3)
         {
-            StateManager.setState(mExplorationState);
+            StateManager.setState(mStateManager.getExplorationState());
         }
         if(mGame.getKeyManager().escape)
         {

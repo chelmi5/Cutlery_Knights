@@ -8,12 +8,12 @@ public class TitleState implements State {
     private Rectangle mQuitButton;
     private Rectangle mHelpButton;
     private Rectangle mPlayButton;
-    private State mPartySelectState;
+    private StateManager mStateManager;
     private Game mGame;
 
-    public TitleState(Game game, State chooseCharState) {
+    public TitleState(Game game, StateManager stateManager) {
         mGame = game;
-        mPartySelectState = chooseCharState;
+        mStateManager = stateManager;
         mPlayButton = new Rectangle((mGame.getWidth() / 3) + 150, 450, 130, 50 );
         mHelpButton = new Rectangle((mGame.getWidth() / 3) + 150, 525, 130, 50 );
         mQuitButton = new Rectangle((mGame.getWidth() / 3) + 150, 600, 130, 50 );
@@ -30,9 +30,6 @@ public class TitleState implements State {
         paintBrush.drawString("2. Help", mHelpButton.x + 20, mHelpButton.y + 35);
         twoDpaintBrush.drawImage(GraphicAssets.mWood, mQuitButton.x, mQuitButton.y, 135, 50, null);
         paintBrush.drawString("3. Quit", mQuitButton.x+20, mQuitButton.y + 35);
-
-        //paintBrush.fillRect(mGame.getMouseManager().getMouseX(), mGame.getMouseManager().getMouseY(), 64, 64)
-
     }
 
     public void update() {
@@ -44,24 +41,17 @@ public class TitleState implements State {
         if(mGame.getKeyManager().one)
         {
             StateManager.setTitleState(this);
-            StateManager.setState(mPartySelectState);
-            System.out.println("Yahoo");
+            StateManager.setState(mStateManager.getPartySeclectionState());
+            System.out.println("Player");
         }
         if(mGame.getKeyManager().two)
         {
-            StateManager.setState(mPartySelectState);
-            System.out.println("Yahoo");
+            StateManager.setState(mStateManager.getHelpState());
+            System.out.println("Help");
         }
-        if(mGame.getKeyManager().three)
-        {
+        if(mGame.getKeyManager().three) {
             System.out.println("GoodBye");
             System.exit(1);
         }
-        if(mGame.getKeyManager().escape)
-        {
-            System.out.println("GoodBye");
-            System.exit(0);
-        }
-
     }
 }
