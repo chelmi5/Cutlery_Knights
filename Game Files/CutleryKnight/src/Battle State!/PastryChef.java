@@ -1,4 +1,3 @@
-//Chelsea Davis, Assignment 3, CSCD 211, Winter 2014
 import java.util.*;
 
 public class PastryChef extends AbstractHero
