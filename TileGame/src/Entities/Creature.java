@@ -46,4 +46,7 @@ public abstract class Creature extends Entity {
         return trigger;
     }
 
+    public boolean isFight() {
+        return false;
+    }
 }

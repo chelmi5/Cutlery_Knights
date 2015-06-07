@@ -10,6 +10,7 @@ public class StateManager {
     private State mBattleState;
     private State mHelpState;
     private State mMenuState;
+    private StateManager mStateManager;
     private static State currentState = null;
 
     public StateManager(Game game) {
@@ -20,6 +21,7 @@ public class StateManager {
         mTitleState = new TitleState(game, this);                  // This will need to be changed to mPartySelection
         mEndState = new EndState(game, this);
         mHelpState = new HelpState(game, this);
+        mStateManager = this;
         setState(mTitleState);
     }
 
@@ -69,5 +71,9 @@ public class StateManager {
 
     public void setHelpState(State helpState) {
         mHelpState = helpState;
+    }
+
+    public void createNewExplorationState(Game game) {
+        mExplorationState = new ExplorationState(game, this);
     }
 }

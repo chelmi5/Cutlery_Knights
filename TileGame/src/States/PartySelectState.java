@@ -1,5 +1,9 @@
 package States;
 import Engine.Game;
+import Entities.AbstractHero;
+import Entities.Characters.FishChef;
+import Entities.Characters.PastryChef;
+import Entities.Characters.SauteChef;
 import Graphics.GraphicAssets;
 import java.awt.*;
 
@@ -8,17 +12,12 @@ public class PartySelectState implements State{
     private Game mGame;
     private int count = 0;
     private StateManager mStateManager;
-    private Rectangle mPlayButton;
-    private Rectangle mHelpButton;
-    private Rectangle mQuitButton;
     private String[] partyArray = new String[3];
+    private AbstractHero[] mPartyArray = new AbstractHero[3];
 
     public PartySelectState(Game game, StateManager stateManager) {
         mGame = game;
         mStateManager = stateManager;
-        mPlayButton = new Rectangle((mGame.getWidth() / 3) + 120, 150, 100, 50 );
-        mHelpButton = new Rectangle((mGame.getWidth() / 3) + 120, 250, 100, 50 );
-        mQuitButton = new Rectangle((mGame.getWidth() / 3) + 120, 350, 100, 50 );
     }
 
     @Override
@@ -27,30 +26,35 @@ public class PartySelectState implements State{
         {
             System.out.println("one");
             partyArray[count] = "Roost Chef";
+            mPartyArray[count] = new FishChef("FishChef");
             count++;
         }
         if(mGame.getKeyManager().two && count < 3)
         {
             System.out.println("two");
             partyArray[count] = "Pastry Chef";
+            mPartyArray[count] = new PastryChef("PastryChef");
             count++;
         }
         if(mGame.getKeyManager().three && count < 3)
         {
             System.out.println("three");
             partyArray[count] = "Saute Chef";
+            mPartyArray[count] = new SauteChef("SauteChef");
             count++;
         }
         if(mGame.getKeyManager().four && count < 3)
         {
             System.out.println("four");
             partyArray[count] = "Vegetable Chef";
+            mPartyArray[count] = new PastryChef("VeggieChef");
             count++;
         }
         if(mGame.getKeyManager().five && count < 3)
         {
             System.out.println("five");
             partyArray[count] = "Fish Chef";
+            mPartyArray[count] = new FishChef("FishChef");
             count++;
         }
         if (mGame.getKeyManager().backspace && count > 0) {
@@ -60,11 +64,13 @@ public class PartySelectState implements State{
             }
             System.out.println("Count:" + count);
             partyArray[count] = "";
+            mPartyArray[count] = null;
             count--;
         }
         if (mGame.getKeyManager().enter && count == 3)
         {
             StateManager.setState(mStateManager.getExplorationState());
+            mGame.setPartyArray(mPartyArray);
         }
         if(mGame.getKeyManager().escape)
         {
@@ -91,16 +97,28 @@ public class PartySelectState implements State{
         paintBrush.drawImage(GraphicAssets.mRoost, 120, 125, 120, 280, null);
         paintBrush.drawImage(GraphicAssets.mPastry, 350, 125, 120, 280, null);
         paintBrush.drawImage(GraphicAssets.mSaute, 560, 125, 120, 280, null);
-        paintBrush.drawImage(GraphicAssets.mVegtable, 760, 125, 120, 280, null);
+        paintBrush.drawImage(GraphicAssets.mVegetable, 760, 125, 120, 280, null);
         paintBrush.drawImage(GraphicAssets.mFish, 960, 125, 120, 280, null);
 
         paintBrush.setFont(font2);
+
+        paintBrush.drawString("1. Roost", 120, 420);
+        paintBrush.drawString("2. Pastry", 350, 420);
+        paintBrush.drawString("3. Saute", 560, 420);
+        paintBrush.drawString("4. Vegetable", 760, 420);
+        paintBrush.drawString("5. Fish", 960, 420);
+
         paintBrush.setColor(Color.BLACK);
         paintBrush.drawString("You have chosen the following for your party", mGame.getWidth() / 3 - 100, 500);
         paintBrush.setColor(Color.DARK_GRAY);
         for (int x = 1; x < count+1; x++)
         {
-            paintBrush.drawString(partyArray[x-1], mGame.getWidth()  / 500 + (300 * x), 550);
+            paintBrush.drawString(mPartyArray[x-1].getName(), (mGame.getWidth()  / 500 + (300 * x))- 50, 550);
+        }
+
+        if (count == 3)
+        {
+            paintBrush.drawImage(GraphicAssets.mEnter, 570, 600, 100, 30, null);
         }
 
     }

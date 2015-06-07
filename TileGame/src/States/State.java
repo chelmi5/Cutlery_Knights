@@ -1,5 +1,4 @@
 package States;
-import Entities.Player;
 
 import java.awt.*;
 

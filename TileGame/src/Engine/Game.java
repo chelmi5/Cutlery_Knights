@@ -1,5 +1,7 @@
 package Engine;
 import Display.*;
+import Entities.AbstractHero;
+import Entities.Mobs.EnemyPiece;
 import Graphics.*;
 import Input.KeyManager;
 import Input.MouseManager;
@@ -7,6 +9,7 @@ import Map.Map;
 import States.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 public class Game implements Runnable {
 
@@ -29,13 +32,13 @@ public class Game implements Runnable {
     // Game Camera
     private GameCamera mGameCamera;
 
-    private int mGameScore;
-
-    public Map getMap() {
-        return mMap;
-    }
-
+    private int mGameScore = 0;
     private Map mMap;
+    private AbstractHero[] mPartyArray = new AbstractHero[3];
+    private ArrayList<EnemyPiece> mMonsterArray = new ArrayList<EnemyPiece>();
+    private boolean battleOver = false;
+
+    private int attackingEnemyID = 0;
 
     public Game(String title, int width, int height) {
         mWidth = width;
@@ -43,11 +46,7 @@ public class Game implements Runnable {
         mTitle = title;
         mKeyManager = new KeyManager();
         mMouseManager = new MouseManager();
-        mMap = new Map(this, "map1.txt");
-    }
-
-    public int getGameScore() {
-        return mGameScore;
+        mMap = new Map(this, "map2.txt");
     }
 
     // initilizes all of our graphics
@@ -127,22 +126,6 @@ public class Game implements Runnable {
         stop();
     }
 
-    public KeyManager getKeyManager() {
-        return mKeyManager;
-    }
-
-    public GameCamera getGameCamera(){
-        return mGameCamera;
-    }
-
-    public int getWidth(){
-        return mWidth;
-    }
-
-    public int getHeight(){
-        return mHeight;
-    }
-
     //Start a new Thread
     public synchronized void start() {
         if(mRunning)
@@ -163,6 +146,58 @@ public class Game implements Runnable {
 
         }
         mPaintBrush.dispose();
+    }
+
+    public ArrayList<EnemyPiece> getMonsterArray() {
+        return mMonsterArray;
+    }
+
+    public void setMonsterArray(ArrayList<EnemyPiece> mMonsterArray) {
+        this.mMonsterArray = mMonsterArray;
+    }
+
+    public int getGameScore() {
+        return mGameScore;
+    }
+
+    public AbstractHero[] getPartyArray() {
+        return mPartyArray;
+    }
+
+    public void setPartyArray(AbstractHero[] PartyArray) {
+        mPartyArray = PartyArray;
+    }
+
+    public Map getMap() {
+        return mMap;
+    }
+
+    public KeyManager getKeyManager() {
+        return mKeyManager;
+    }
+
+    public GameCamera getGameCamera(){
+        return mGameCamera;
+    }
+
+    public int getWidth(){
+        return mWidth;
+    }
+
+    public int getHeight(){
+        return mHeight;
+    }
+
+
+    public int getAttackingEnemyID() {
+        if (attackingEnemyID != 0)
+            return attackingEnemyID;
+        else
+            return 1;
+    }
+
+    public void setAttackingEnemyID(int attackingEnemyID) {
+        this.attackingEnemyID = attackingEnemyID;
     }
 
 }

@@ -1,13 +1,13 @@
 package States;
 import Engine.Game;
-import Entities.Player;
+import Entities.GamePiece;
 
 import java.awt.*;
 
 public class MenuState implements State {
 
     private Game mGame;
-    private Player mPlayer;
+    private GamePiece mGamePiece;
     private StateManager mStateMager;
 
     public MenuState(Game game, StateManager stateManager) {

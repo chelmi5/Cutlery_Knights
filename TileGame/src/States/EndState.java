@@ -19,6 +19,7 @@ public class EndState implements State {
     public void update() {
         if(mGame.getKeyManager().escape)
         {
+           // StateManager.createNewExplorationState(mGame);
             StateManager.setState(mStateManager.getTitleState());
             System.out.println("Title");
         }
