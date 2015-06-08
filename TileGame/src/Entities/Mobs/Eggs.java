@@ -10,9 +10,9 @@ public class Eggs extends AbstractMonster
 
    private BufferedImage mIcon;
 
-   public Eggs(int enemyID)
+   public Eggs()
    {
-      super("Rotten Eggs", 200, 2, 5, 70, 0.6, 0.1, 15, 30, enemyID);
+      super("Rotten Eggs", 200, 2, 5, 70, 0.6, 0.1, 15, 30);
       mIcon = GraphicAssets.mEnemy;
    }
 

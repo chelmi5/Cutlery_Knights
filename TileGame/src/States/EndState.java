@@ -33,23 +33,12 @@ public class EndState implements State {
 
         paintBrush.setFont(font1);
         paintBrush.setColor(Color.LIGHT_GRAY);
-        String finalString = "";
-
-        if (mGame.isWin())
-            finalString = "Congratulations you win!";
-        else
-            finalString = "You Lost";
-        paintBrush.drawString(finalString, 100, 73);
+        paintBrush.drawString("You Win", mGame.getWidth() / 3 + 100, 73);
         paintBrush.setColor(Color.BLACK);
-        paintBrush.drawString(finalString, 100, 75);
+        paintBrush.drawString("You Win", mGame.getWidth() / 3 + 101, 75);
 
         paintBrush.setFont(font2);
         paintBrush.drawString("Your score was " + mGame.getGameScore(), 100, 200);
-        String enemies = " enemies.";
-        if (mGame.getKillCount() == 1)
-            enemies = "enemy.";
-        paintBrush.drawString("You killed " + mGame.getKillCount() + enemies
-                , 100, 250);
 
         mTime++;
         if (mTime < 30) {

@@ -4,9 +4,9 @@ import Entities.AbstractMonster;
 import Entities.Creature;
 import Entities.GamePiece;
 import Map.Map;
-
+import Graphics.GraphicAssets;
 import java.awt.*;
-
+import java.awt.image.BufferedImage;
 import Utilities.CodeTools;
 
 public class EnemyPiece extends Creature {
@@ -17,14 +17,11 @@ public class EnemyPiece extends Creature {
     private GamePiece mGamePiece;
     private AbstractMonster mMonster;
     private boolean fight = false;
-    private int mEnemyID;
 
     public EnemyPiece(Game game, float x, float y, Map map, GamePiece gamePiece, AbstractMonster monster) {
         super(game, x, y, DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_WIDTH, map);
         mMonster = monster;
         mGamePiece = gamePiece;
-        mMonster.getmEnemyID();
-        mEnemyID = mMonster.getmEnemyID();
     }
 
     public void update() {
@@ -78,7 +75,6 @@ public class EnemyPiece extends Creature {
         if ((mGamePiece.getCoordinateX() < rangeHighX && mGamePiece.getCoordinateX() > rangeLowX) &&
                 (mGamePiece.getCoordinateY() < rangeHighY && mGamePiece.getCoordinateY() > rangeLowY))
         {
-            mGame.setAttackingEnemyID(mEnemyID);
             fight = true;
             System.out.println("Switching to BattleState");
         }
@@ -90,10 +86,6 @@ public class EnemyPiece extends Creature {
 
     public AbstractMonster getMonster() {
         return mMonster;
-    }
-
-    public void setEnemyID() {
-        mEnemyID--;
     }
 
     public boolean isFight() {

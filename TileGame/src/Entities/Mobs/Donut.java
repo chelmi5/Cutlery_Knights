@@ -10,9 +10,9 @@ public class Donut extends AbstractMonster
 
    private BufferedImage mIcon;
 
-   public Donut(int enemyID)
+   public Donut()
    {
-      super("Possessed Donut", 200, 2, 2, 200, 0.6, 0.1, 30, 60, enemyID);
+      super("Possessed Donut", 200, 2, 2, 200, 0.6, 0.1, 30, 60);
       mIcon = GraphicAssets.mEnemy;
    }
 

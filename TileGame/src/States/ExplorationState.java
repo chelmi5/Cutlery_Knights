@@ -18,7 +18,7 @@ public class ExplorationState implements State {
     private Game mGame;
     private StateManager mStateManager;
     private ArrayList<EnemyPiece> mMonsterArray = new ArrayList<EnemyPiece>();
-    private int enemyID = 0;
+    private static int enemyID = 1;
 
     public ExplorationState(Game game, StateManager stateManager) {
         mGame = game;
@@ -42,7 +42,6 @@ public class ExplorationState implements State {
             mMonsterArray.add(new EnemyPiece(game, temp1, temp2, mMap, mGamePiece, fish));
             enemyID ++;
         }
-        mGame.setmOriginalSize(mMonsterArray.size());
         mGame.setMonsterArray(mMonsterArray);
     }
 

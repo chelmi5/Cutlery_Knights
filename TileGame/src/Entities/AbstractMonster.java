@@ -11,16 +11,13 @@ public abstract class AbstractMonster extends AbstractCharacter
    protected double chanceToHeal;
    protected int minHeal;
    protected int maxHeal;
-   protected int mEnemyID;
 
-   public AbstractMonster(String name, int h, int as, int minr, int maxr, double c, double cth, int minh, int maxh, int enemyID)
+   public AbstractMonster(String name, int h, int as, int minr, int maxr, double c, double cth, int minh, int maxh)
    {
       super(name, h, as, minr, maxr, c);
       this.chanceToHeal = cth;
       this.minHeal = minh;
       this.maxHeal = maxh;
-      mEnemyID = enemyID;
-
    }
 
    public int heal(int selfHP)
@@ -60,7 +57,7 @@ public abstract class AbstractMonster extends AbstractCharacter
    
    public int attack(AbstractHero player)
    {
-      int damage = 0;
+      int damage =0;
       double didItHit = Math.random();
       Random num = new Random();
       System.out.print("\nThe Monster lunges at the Hero to attack...\n");
@@ -86,10 +83,6 @@ public abstract class AbstractMonster extends AbstractCharacter
       }
    
       return damage;
-   }
-
-   public int getmEnemyID() {
-      return mEnemyID;
    }
 
    public abstract BufferedImage getIcon();
