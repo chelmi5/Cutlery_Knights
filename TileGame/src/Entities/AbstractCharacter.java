@@ -77,4 +77,8 @@ public abstract class AbstractCharacter
    public int getMaxHP() {
       return mMaxHP;
    }
+
+   public double getChanceToHit() {
+      return mChanceToHit;
+   }
 }

@@ -7,6 +7,8 @@ import Input.KeyManager;
 import Input.MouseManager;
 import Map.Map;
 import States.*;
+import Tile.TileManager;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
@@ -31,13 +33,14 @@ public class Game implements Runnable {
 
     // Game Camera
     private GameCamera mGameCamera;
-
     private int mGameScore = 0;
     private Map mMap;
+    private TileManager mTileManager;
     private AbstractHero[] mPartyArray = new AbstractHero[3];
     private ArrayList<EnemyPiece> mMonsterArray = new ArrayList<EnemyPiece>();
     private boolean battleOver = false;
-
+    private int mOriginalSize = 0;
+    private int enemiesKilled = 0;
     private int attackingEnemyID = 0;
 
     public Game(String title, int width, int height) {
@@ -51,10 +54,11 @@ public class Game implements Runnable {
 
     // initilizes all of our graphics
     private void init() {
+        GraphicAssets.init();
+        mTileManager = new TileManager();
         mDisplay = new Display(mTitle, mWidth, mHeight);
         mDisplay.getFrame().addKeyListener(mKeyManager);
         mDisplay.getFrame().addMouseListener(mMouseManager);
-        GraphicAssets.init();
         mGameCamera = new GameCamera(this, 0, 0);
 
         mStateManager = new StateManager(this);
@@ -188,16 +192,47 @@ public class Game implements Runnable {
         return mHeight;
     }
 
+    public void setGameScore(int gameScore) {
+        if (gameScore > 0)
+            mGameScore += gameScore;
+    }
 
     public int getAttackingEnemyID() {
-        if (attackingEnemyID != 0)
+        if (attackingEnemyID > -1)
             return attackingEnemyID;
         else
-            return 1;
+            return 0;
     }
 
     public void setAttackingEnemyID(int attackingEnemyID) {
         this.attackingEnemyID = attackingEnemyID;
     }
 
+    public TileManager getTileManager() {
+        return mTileManager;
+    }
+
+    public void killedEnemy() {
+        for (int x = attackingEnemyID; x < mMonsterArray.size(); x++)
+        {
+            mMonsterArray.get(x).setEnemyID();
+        }
+        this.enemiesKilled++;
+    }
+
+    public int getKillCount(){
+        return enemiesKilled;
+    }
+
+    public void setmOriginalSize(int mOriginalSize) {
+        this.mOriginalSize = mOriginalSize;
+    }
+
+
+    public boolean isWin() {
+        if (mOriginalSize - enemiesKilled == 0)
+            return true;
+        else
+            return false;
+    }
 }

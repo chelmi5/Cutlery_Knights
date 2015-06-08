@@ -40,6 +40,8 @@ public class GraphicAssets {
     public static BufferedImage mhealthHolder;
     public static BufferedImage mHealth;
     public static BufferedImage mEnter;
+    public static BufferedImage mSbutton;
+    public static BufferedImage mStatsholder;
 
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/res/textures/spritesheet.png"));
@@ -67,6 +69,8 @@ public class GraphicAssets {
         SpriteSheet healthHolder = new SpriteSheet(ImageLoader.loadImage("/res/textures/healthholder.png"));
         SpriteSheet health = new SpriteSheet(ImageLoader.loadImage("/res/textures/health.png"));
         SpriteSheet enter = new SpriteSheet(ImageLoader.loadImage("/res/textures/enter.png"));
+        SpriteSheet sbutton = new SpriteSheet(ImageLoader.loadImage("/res/textures/sbutton.png"));
+        SpriteSheet statsholder = new SpriteSheet(ImageLoader.loadImage("/res/textures/statsholder.png"));
 
         mPlayerIcon = sheet.crop(0,0,mPlayerWidth, mPlayerHeight);
 
@@ -106,6 +110,8 @@ public class GraphicAssets {
         mHealth = health.crop(0, 0, 200, 20);
         mhealthHolder = healthHolder.crop(0, 0, 200, 20);
         mEnter = enter.crop(0, 0, 300, 100);
+        mSbutton = sbutton.crop(0, 0, 100, 100);
+        mStatsholder = statsholder.crop(0, 0, 300, 400);
     }
 
 }
