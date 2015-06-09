@@ -47,15 +47,16 @@ public class EndState implements State {
         paintBrush.drawString("Your score was " + mGame.getGameScore(), 100, 200);
         String enemies = " enemies.";
         if (mGame.getKillCount() == 1)
-            enemies = "enemy.";
+            enemies = " enemy.";
         paintBrush.drawString("You killed " + mGame.getKillCount() + enemies
                 , 100, 250);
 
         mTime++;
         if (mTime < 30) {
-            paintBrush.drawImage(GraphicAssets.mFish, mCounter * (100), 460, 120, 280, null);
-            paintBrush.drawImage(GraphicAssets.mEnemy, mCounter * (100) + 200, 620, 64, 64, null);
-            paintBrush.drawImage(GraphicAssets.mEnemy, mCounter * (100) + 300, 620, 64, 64, null);
+            paintBrush.drawImage(GraphicAssets.mFishChef, (mCounter * 100), 460, 120, 280, null);
+            paintBrush.drawImage(GraphicAssets.mFish, (mCounter * 100) + 200, 620, 64, 64, null);
+            paintBrush.drawImage(GraphicAssets.mDount, (mCounter * 100) + 300, 620, 64, 64, null);
+            paintBrush.drawImage(GraphicAssets.mEggs, (mCounter * 100) + 400, 620, 64, 64, null);
         }
         else {
             mCounter ++;

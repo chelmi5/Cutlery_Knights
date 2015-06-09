@@ -1,7 +1,7 @@
 package Graphics;
 
 import Engine.Game;
-import Entities.Entity;
+import Entities.GamePieces.PieceTemplate;
 
 public class GameCamera {
 
@@ -15,7 +15,7 @@ public class GameCamera {
         mYoffset = xoffset;
     }
 
-    public void centerOnEntity(Entity character) {
+    public void centerOnEntity(PieceTemplate character) {
         mXoffset = (int)character.getX() - mGame.getWidth() / 2 + character.getWidth()/2;
         mYoffset = (int)character.getY() - mGame.getHeight() / 2 + character.getHeight()/2;
     }

@@ -3,33 +3,45 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import Engine.Game;
-import Entities.AbstractHero;
-import Entities.AbstractMonster;
-import Entities.Creature;
-import Entities.GamePiece;
+import Entities.GamePieces.EnemyPieceTemplate;
+import Entities.GamePieces.PlayerPieceTemplate;
 import Entities.Mobs.*;
 import Map.Map;
 import Utilities.CodeTools;
 
 public class ExplorationState implements State {
 
-    private GamePiece mGamePiece;
+    private PlayerPieceTemplate mPlayerPiece;
     private Map mMap;
     private Game mGame;
     private StateManager mStateManager;
-    private ArrayList<EnemyPiece> mMonsterArray = new ArrayList<EnemyPiece>();
+    private ArrayList<EnemyPieceTemplate> mMonsterArray = new ArrayList<EnemyPieceTemplate>();
     private int enemyID = 0;
 
     public ExplorationState(Game game, StateManager stateManager) {
         mGame = game;
         mMap = mGame.getMap();
         mStateManager = stateManager;
-        mGamePiece = new GamePiece(game, 100, 100, mMap);
+        mPlayerPiece = new PlayerPieceTemplate(game, 100, 100, mMap);
         generateEnemies(mGame);
     }
 
     private void generateEnemies(Game game) {
+        RoundOneFactory mobFactory = new RoundOneFactory();
+
         for(int x = 0; x < 4; x++) {
+
+            String mobString;
+            int randNum = CodeTools.randInt(1, 3);
+            if (randNum == 1)
+                mobString = "fishmob";
+            else if (randNum == 2)
+                mobString = "donutmob";
+            else if (randNum == 3)
+                mobString = "eggsmob";
+            else
+                mobString = "";
+
             int temp1 = 100 + CodeTools.randInt(20, 400);
             int temp2 = 100 + CodeTools.randInt(20, 400);
             while( colison(temp1, temp2))
@@ -38,8 +50,9 @@ public class ExplorationState implements State {
                 temp2 = 100 + CodeTools.randInt(20, 400);
             }
                 System.out.println("Check");
-            AbstractMonster fish = new Fish(enemyID);
-            mMonsterArray.add(new EnemyPiece(game, temp1, temp2, mMap, mGamePiece, fish));
+
+            Mob newMob = mobFactory.makeMob(mobString, enemyID);
+            mMonsterArray.add(new EnemyPieceTemplate(game, temp1, temp2, mMap, mPlayerPiece, newMob));
             enemyID ++;
         }
         mGame.setmOriginalSize(mMonsterArray.size());
@@ -62,7 +75,7 @@ public class ExplorationState implements State {
     @Override
     public void update() {
         mMap.update();
-        mGamePiece.update();
+        mPlayerPiece.update();
         for (int x = 0; x < mMonsterArray.size(); x++) {
             mMonsterArray.get(x).update();
         }
@@ -85,13 +98,13 @@ public class ExplorationState implements State {
     @Override
     public void render(Graphics paintBrush) {
         mMap.render(paintBrush);
-        mGamePiece.render(paintBrush);
+        mPlayerPiece.render(paintBrush);
         for (int x = 0; x < mMonsterArray.size(); x++){
             mMonsterArray.get(x).render(paintBrush);
         }
     }
 
-    public GamePiece getPlayer() {
-        return mGamePiece;
+    public PlayerPieceTemplate getPlayer() {
+        return mPlayerPiece;
     }
 }

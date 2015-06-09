@@ -1,7 +1,5 @@
 package Entities.Characters;
 
-import Entities.AbstractHero;
-
 /**
  * Created by CountryGeek1 on 6/7/15.
  */
@@ -14,6 +12,6 @@ public class CharacterManager {
         mCharacterArray[1] = new PastryChef("Pastry Chef");
         mCharacterArray[2] = new SauteChef("Saute Chef");
         mCharacterArray[3] = new PastryChef("Veggie Chef");
-        mCharacterArray[4] = new FishChef("Fish Chef");
+        mCharacterArray[4] = new FishChef("FishMob Chef");
     }
 }

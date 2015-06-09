@@ -1,6 +1,6 @@
 package States;
 import Engine.Game;
-import Entities.AbstractHero;
+import Entities.Characters.AbstractHero;
 import Entities.Characters.CharacterManager;
 import Entities.Characters.FishChef;
 import Entities.Characters.PastryChef;
@@ -57,7 +57,7 @@ public class PartySelectState implements State{
         if(mGame.getKeyManager().five && count < 3)
         {
             System.out.println("five");
-            partyArray[count] = "Fish Chef";
+            partyArray[count] = "FishMob Chef";
             mPartyArray[count] = new FishChef("FishChef");
             count++;
         }
@@ -112,7 +112,7 @@ public class PartySelectState implements State{
         paintBrush.drawImage(GraphicAssets.mPastry, 350, 125, 120, 280, null);
         paintBrush.drawImage(GraphicAssets.mSaute, 560, 125, 120, 280, null);
         paintBrush.drawImage(GraphicAssets.mVegetable, 760, 125, 120, 280, null);
-        paintBrush.drawImage(GraphicAssets.mFish, 960, 125, 120, 280, null);
+        paintBrush.drawImage(GraphicAssets.mFishChef, 960, 125, 120, 280, null);
 
         paintBrush.setFont(font2);
 
@@ -120,20 +120,20 @@ public class PartySelectState implements State{
         paintBrush.drawString("2. Pastry", 350, 420);
         paintBrush.drawString("3. Saute", 560, 420);
         paintBrush.drawString("4. Vegetable", 760, 420);
-        paintBrush.drawString("5. Fish", 960, 420);
+        paintBrush.drawString("5. FishMob", 960, 420);
 
         if (pressedS) {
             for (int x = 0; x < mCharacterManager.mCharacterArray.length; x++) {
                 paintBrush.setFont(font3);
                 paintBrush.drawImage(GraphicAssets.mStatsholder, 100 + (230 * x), 160, 160, 160, null);
-                paintBrush.drawString(mCharacterManager.mCharacterArray[x].getName(), 110 + (230 * x), 185);
+                paintBrush.drawString(mCharacterManager.mCharacterArray[x].getStats().getName(), 110 + (230 * x), 185);
 
                 paintBrush.setFont(font4);
-                paintBrush.drawString("Health: " + mCharacterManager.mCharacterArray[x].getHP(), 110 + (230 * x), 210);
-                paintBrush.drawString("Attack Speed: " + mCharacterManager.mCharacterArray[x].getAttackSpeed(), 110 + (230 * x), 225);
+                paintBrush.drawString("Health: " + mCharacterManager.mCharacterArray[x].getStats().getChanceToHit(), 110 + (230 * x), 210);
+                paintBrush.drawString("Effect Speed: " + mCharacterManager.mCharacterArray[x].getStats().getAttackSpeed(), 110 + (230 * x), 225);
                 paintBrush.drawString("Chance to block: " + mCharacterManager.mCharacterArray[x].getChanceToBlock(), 110 + (230 * x), 240);
-                paintBrush.drawString("Chance to hit: " + mCharacterManager.mCharacterArray[x].getChanceToHit(), 110 + (230 * x), 255);
-                paintBrush.drawString("Special Attack:", 110 + (230 * x), 280);
+                paintBrush.drawString("Chance to hit: " + mCharacterManager.mCharacterArray[x].getStats().getChanceToHit(), 110 + (230 * x), 255);
+                paintBrush.drawString("Special Effect:", 110 + (230 * x), 280);
                 paintBrush.drawString(mCharacterManager.mCharacterArray[x].getAttackNames().get(1), 110 + (230 * x), 295);
 
             }
@@ -144,7 +144,7 @@ public class PartySelectState implements State{
         paintBrush.setColor(Color.DARK_GRAY);
         for (int x = 1; x < count+1; x++)
         {
-            paintBrush.drawString(mPartyArray[x-1].getName(), (mGame.getWidth()  / 500 + (300 * x))- 50, 550);
+            paintBrush.drawString(mPartyArray[x-1].getStats().getName(), (mGame.getWidth()  / 500 + (300 * x))- 50, 550);
         }
 
         if (count == 3)
