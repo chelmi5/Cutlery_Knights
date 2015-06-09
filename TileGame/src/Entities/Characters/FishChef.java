@@ -1,55 +1,31 @@
 package Entities.Characters;
-import Entities.AbstractHero;
+import Entities.Abilities.SpecialAbilityBehavior;
+import Entities.Abilities.SurpriseSpecialAbility;
 import Graphics.GraphicAssets;
-
+import Entities.Mobs.Mob;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Random;
+import Entities.Stats;
 
 public class FishChef extends AbstractHero
 {
 
    private BufferedImage mIcon;
    private ArrayList<String> attackNames = new ArrayList<String>();
+   private SpecialAbilityBehavior mSpecialAttack;
 
    public FishChef(String name)
    {
-      super(name, 100, 6, 20, 40, 0.8, 0.4, 1, 3);
-      mIcon = GraphicAssets.mFish;
-      attackNames.add("Regular Attack (80% chance)");
-      attackNames.add("Surprise Attack");
+      super(new Stats(name, 100, 6, 20, 40, 0.8), 0.4, 1, 3);
+      mIcon = GraphicAssets.mFishChef;
+      mSpecialAttack = new SurpriseSpecialAbility();
+      attackNames.add("Regular Effect (80% chance)");
+      attackNames.add("Surprise Effect");
    }
 
-   @Override
-   public int specialAttack()
+   public int specialAbility(Mob mob)
    {
-      Random num = new Random();
-      int didItHit = num.nextInt(11);
-      int damage = 0;
-      
-      if (didItHit <= 4)
-      {
-         damage = attack();
-         
-         if(num.nextInt(11) <= 2)
-         {
-            System.out.println("The first attack was successful, but the Fish Chef was caught.");
-            return damage;
-         }
-         else
-         {
-            System.out.println("The second attack was successful!");
-            damage = attack();
-            return damage;
-         }
-      }
-      
-      else
-      {
-         System.out.println("AttackBehavior missed...");
-      }
-      
-      return damage;
+     return mSpecialAttack.Effect(this, mob);
    }
 
    @Override

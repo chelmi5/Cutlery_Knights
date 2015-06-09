@@ -1,8 +1,10 @@
 package Map;
 import Engine.Game;
+import Tile.TileManager;
 import Tile.Tile;
 import Utilities.FileUtility;
 import java.awt.*;
+import Graphics.GraphicAssets;
 
 public class Map {
 
@@ -39,21 +41,11 @@ public class Map {
     }
 
     public Tile getTile(int x, int y) {
-        try{
             int tileIndex = tileArray[x][y];
-
-            Tile tempTile = Tile.mTiles[tileIndex];
-            if (tempTile == null)
-                return Tile.floorTile;
+            //System.out.println("Tile index is: " + tileIndex);
+            Tile tempTile = mGame.getTileManager().mTiles[tileIndex];
 
             return tempTile;
-        }catch (ArrayIndexOutOfBoundsException e){
-            return null;
-        }
-    }
-
-    public int[][] getTileArray() {
-        return tileArray;
     }
 
     private void loadMap(String path) {

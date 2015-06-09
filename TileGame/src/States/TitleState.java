@@ -42,7 +42,7 @@ public class TitleState implements State {
         {
             StateManager.setTitleState(this);
             StateManager.setState(mStateManager.getPartySeclectionState());
-            System.out.println("GamePiece");
+            System.out.println("PlayerPieceTemplate");
         }
         if(mGame.getKeyManager().two)
         {

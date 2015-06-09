@@ -1,49 +1,33 @@
 package Entities.Characters;
-
-import Entities.AbstractHero;
+import Entities.Abilities.HealPlayer;
+import Entities.Abilities.SpecialAbilityBehavior;
+import Entities.Stats;
 import Graphics.GraphicAssets;
-
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Random;
+import Entities.Mobs.Mob;
+
 
 public class PastryChef extends AbstractHero
 {
 
    private BufferedImage mIcon;
    private ArrayList<String> attackNames = new ArrayList<String>();
+   private SpecialAbilityBehavior mHeal;
 
    public PastryChef(String name)
    {
-      super(name, 100, 5, 25, 45, 0.8, 0.2, 1, 2);
+
+      super(new Stats(name, 100, 5, 25, 45, 0.8), 0.2, 1, 2);
       mIcon = GraphicAssets.mPastry;
-      attackNames.add("Regular Attack (80% chance)");
-      attackNames.add("Heal");
+      attackNames.add("Regular Effect (80% chance)");
+      attackNames.add("HealPlayer");
+      mHeal = new HealPlayer();
    }
 
-   public int specialAttack()
+   public int specialAbility(Mob mob)
    {
-      if(this.getHP() < 100)
-      {
-         Random num = new Random();
-         int healPoints = num.nextInt(26)+30;
-         this.mHp += healPoints;
-         if (this.getHP() > 100)
-         {
-            this.mHp = 100;
-            System.out.printf("The Pastry Chef healed herself back to full health! Her HP is now at %d!", this.getHP());
-         }
-         else
-         {
-            System.out.printf("The Pastry Chef healed herself for %d points! Her HP is now at %d!", healPoints, this.getHP());
-         }
-         return 0;
-      }
-      else
-      {
-         System.out.println("Don't waste your turn... Why heal when you have full health?");
-         return 0;
-      }
+      return mHeal.Effect(this, mob);
    }
 
    @Override

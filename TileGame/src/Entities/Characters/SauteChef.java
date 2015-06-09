@@ -1,46 +1,31 @@
 package Entities.Characters;
-
-import Entities.AbstractHero;
-import Entities.AttackBehavior;
+import Entities.Abilities.CrushingBlow;
+import Entities.Abilities.SpecialAbilityBehavior;
 import Graphics.GraphicAssets;
-
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Random;
+import Entities.Stats;
+import Entities.Mobs.Mob;
 
 public class SauteChef extends AbstractHero
 {
 
    private BufferedImage mIcon;
    private ArrayList<String> attackNames = new ArrayList<String>();
+   private SpecialAbilityBehavior mCrushingBlow;
 
    public SauteChef(String name)
    {
-      super(name, 125, 4, 35, 60, 0.8, 0.2, 1, 1);
+      super(new Stats(name, 125, 4, 35, 60, 0.8), 0.2, 1, 1);
       mIcon = GraphicAssets.mSaute;
-      attackNames.add("Regular Attack (80% chance)");
+      attackNames.add("Regular Effect (80% chance)");
       attackNames.add("Crushing Blow");
+      mCrushingBlow = new CrushingBlow();
    }
    
-   public int specialAttack()
+   public int specialAbility(Mob mob)
    {
-      Random num = new Random();
-      int damage = 0;
-      int didItHit = num.nextInt(11);
-      int damageDone = num.nextInt(101) + 75;
-      
-      if (didItHit <= 4)
-      {
-         System.out.printf("AttackBehavior successful! Saute Chef did %d damage to Monster!\n", damageDone);
-         damage = damageDone;
-      }
-      
-      else
-      {
-         System.out.println("AttackBehavior missed...");
-      }
-      
-      return damage;
+      return mCrushingBlow.Effect(this, mob);
    }
 
    @Override

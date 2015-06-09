@@ -1,30 +1,27 @@
-package Entities.Mobs;
+package Entities.GamePieces;
 import Engine.Game;
-import Entities.AbstractMonster;
-import Entities.Creature;
-import Entities.GamePiece;
 import Map.Map;
-
+import Entities.Mobs.Mob;
 import java.awt.*;
 
 import Utilities.CodeTools;
 
-public class EnemyPiece extends Creature {
+public class EnemyPieceTemplate extends PieceTemplate {
 
     private int mTime = 0;
     private int mRandomNumber1 = 0;
     private int mRandomNumber2 = 0;
-    private GamePiece mGamePiece;
-    private AbstractMonster mMonster;
+    private PlayerPieceTemplate mPlayerPiece;
+    private Mob mMonster;
     private boolean fight = false;
     private int mEnemyID;
 
-    public EnemyPiece(Game game, float x, float y, Map map, GamePiece gamePiece, AbstractMonster monster) {
+    public EnemyPieceTemplate(Game game, float x, float y, Map map, PlayerPieceTemplate playerPiece, Mob monster) {
         super(game, x, y, DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_WIDTH, map);
         mMonster = monster;
-        mGamePiece = gamePiece;
-        mMonster.getmEnemyID();
-        mEnemyID = mMonster.getmEnemyID();
+        mPlayerPiece = playerPiece;
+        mMonster.getEnemyID();
+        mEnemyID = mMonster.getEnemyID();
     }
 
     public void update() {
@@ -66,7 +63,7 @@ public class EnemyPiece extends Creature {
             mY += yMove;
         }
 
-        //System.out.println("x: "+ mGamePiece.getCoordinateX() + "y: " + mGamePiece.getCoordinateY());
+        //System.out.println("x: "+ mPlayerPiece.getCoordinateX() + "y: " + mPlayerPiece.getCoordinateY());
         //System.out.println("yMove: " + numY);
 
         int rangeHighX = (numX + 50);
@@ -75,8 +72,8 @@ public class EnemyPiece extends Creature {
         int rangeLowY = (numY - 60);
 
 
-        if ((mGamePiece.getCoordinateX() < rangeHighX && mGamePiece.getCoordinateX() > rangeLowX) &&
-                (mGamePiece.getCoordinateY() < rangeHighY && mGamePiece.getCoordinateY() > rangeLowY))
+        if ((mPlayerPiece.getCoordinateX() < rangeHighX && mPlayerPiece.getCoordinateX() > rangeLowX) &&
+                (mPlayerPiece.getCoordinateY() < rangeHighY && mPlayerPiece.getCoordinateY() > rangeLowY))
         {
             mGame.setAttackingEnemyID(mEnemyID);
             fight = true;
@@ -88,7 +85,7 @@ public class EnemyPiece extends Creature {
         paintBrush.drawImage(mMonster.getIcon(),(int)(mX -  mGame.getGameCamera().getXoffset()), (int)(mY -  mGame.getGameCamera().getYoffset()), mWidth, mHeight, null);
     }
 
-    public AbstractMonster getMonster() {
+    public Mob getMonster() {
         return mMonster;
     }
 

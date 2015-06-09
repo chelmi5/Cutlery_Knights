@@ -1,8 +1,8 @@
 package States;
-
+import Entities.Mobs.Mob;
 import Engine.Game;
-import Entities.AbstractHero;
-import Entities.Mobs.EnemyPiece;
+import Entities.Characters.AbstractHero;
+import Entities.GamePieces.EnemyPieceTemplate;
 import Graphics.GraphicAssets;
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,34 +12,40 @@ public class BattleState implements State {
     private Game mGame;
     private StateManager mStateManager;
     private AbstractHero[] mParty;
-    private ArrayList<EnemyPiece> mEnemyList;
+    private ArrayList<EnemyPieceTemplate> mEnemyList;
     private int mCombinedPartyHP;
     private int mCombinedEnemyHP;
+    private int mEnemyHP;
     private Rectangle mMenuRectangle;
     private int count = 0;
     private int[] mAttackSelected = new int[3];
     private int mTimer = 0;
     private int mTurn = 0;
 
+    private boolean isOver = false;
+
     public BattleState(Game game, StateManager stateManager) {
         mGame = game;
         mStateManager = stateManager;
     }
 
-    private int combinedEnemyHealth() {
-        int health = 0;
-        for (int x = 0; x < mEnemyList.size(); x++)
-        {
-            health += mEnemyList.get(x).getMonster().getHP();
-        }
-        return health;
+    private int enemyHealth() {
+        return mEnemyList.get(mGame.getAttackingEnemyID()).getMonster().getStats().getHitPoints();
     }
 
     private int combinedPartyHealth() {
         int health = 0;
         for (int x = 0; x < mParty.length; x++)
         {
-            health += mParty[x].getHP();
+            health += mParty[x].getStats().getHitPoints();
+        }
+        return health;
+    }
+
+    private int combinedEnemyHelth() {
+        int health = 0;
+        for (int x = 0; x < mEnemyList.size(); x++){
+            health += mEnemyList.get(x).getMonster().getStats().getHitPoints();
         }
         return health;
     }
@@ -52,82 +58,110 @@ public class BattleState implements State {
         mEnemyList = mGame.getMonsterArray();
 
         mCombinedPartyHP = combinedPartyHealth();
-        mCombinedEnemyHP = combinedEnemyHealth();
+        mCombinedEnemyHP = combinedEnemyHelth();
+        mEnemyHP = enemyHealth();
 
-        if(mGame.getKeyManager().escape)
-        {
-            StateManager.setState(mStateManager.getExplorationState());
-        }
-        if (mGame.getKeyManager().kay)
-        {
-            StateManager.setState(mStateManager.getEndState());
-        }
+        if (mEnemyHP < 1 || mCombinedPartyHP < 1)
+            isOver = true;
 
-        if (mGame.getKeyManager().one && count < 3)
+        if (isOver)
         {
-            System.out.println("one");
-            mAttackSelected[count] = 1;
-            count++;
-        }
-        if (mGame.getKeyManager().two && count < 3)
-        {
-            System.out.println("two");
-            mAttackSelected[count] = 2;
-            count++;
-        }
-
-        if (combinedEnemyHealth() < 1)
-        {
-            System.out.println("Switching back to ExplorationState");
-            StateManager.setState(mStateManager.getExplorationState());
-        }
-        else if (mCombinedPartyHP < 1)
-        {
-            StateManager.setState(mStateManager.getEndState());
-        }
-
-        if (mGame.getKeyManager().enter && count == 3 && mTurn == 0) {
-                playerAttack();
-                mTimer = 0;
-        }
-
-        if (mTurn == 1)
-        {
-            boolean trigger = false;
-            if (mTurn == 1)
-                trigger = enemyAttack();
-
-            if (trigger) {
-                mAttackSelected = new int[3];
-                count = 0;
+            if (mEnemyHP < 1 && mGame.getKeyManager().enter)
+            {
+                System.out.println("Switching back to ExplorationState");
                 mTimer = 0;
                 mTurn = 0;
+                isOver = false;
+                count = 0;
+                mAttackSelected = new int[3];
+                mEnemyList.remove(mEnemyList.get(mGame.getAttackingEnemyID()));
+                mGame.setMonsterArray(mEnemyList);
+                mGame.killedEnemy();
+                StateManager.setState(mStateManager.getExplorationState());
+            }
+            else if (mCombinedEnemyHP < 1 && mGame.getKeyManager().enter)
+            {
+                StateManager.setState(mStateManager.getEndState());
+            }
+            else if (mCombinedPartyHP < 1 && mGame.getKeyManager().enter)
+            {
+                StateManager.setState(mStateManager.getEndState());
+            }
+        }
+        else
+        {
+            if (mGame.getKeyManager().backspace && count > 0)
+            {
+                System.out.println("Backspace: count:" + count);
+                if (count == 3)
+                    count --;
+                mAttackSelected[count] = 0;
+                count--;
+            }
+            if (mGame.getKeyManager().one && count < 3)
+            {
+                System.out.println("one");
+                mAttackSelected[count] = 1;
+                count++;
+            }
+
+            if (mGame.getKeyManager().two && count < 3)
+            {
+                System.out.println("two");
+                mAttackSelected[count] = 2;
+                count++;
+            }
+
+            if (mGame.getKeyManager().enter && count == 3 && mTurn == 0) {
+                mTurn = 1;
+                playerAttack();
+                mTimer = 0;
+            }
+
+            if (mTurn == 1)
+            {
+                boolean trigger = false;
+                if (mTurn == 1)
+                    trigger = enemyAttack();
+
+                if (trigger) {
+                    mAttackSelected = new int[3];
+                    count = 0;
+                    mTimer = 0;
+                    mTurn = 0;
+                }
             }
         }
     }
 
     private boolean enemyAttack() {
         if (mTimer > 80) {
-            for (int x = 0; x < mEnemyList.size(); x++) {
-                for (int i = 0; i < mParty.length; i++) {
-                    mParty[i].setHp(mParty[i].getHP() - mEnemyList.get(x).getMonster().attack());
-                }
+            for (int i = 0; i < mParty.length; i++) {
+                mParty[i].getStats().setHitPoints(mParty[i].getStats().getHitPoints() -
+                        mEnemyList.get(mGame.getAttackingEnemyID()).getMonster().attack(mParty[i]));
             }
             return true;
         }
         return false;
     }
 
+// Player Attacking
+
     private void playerAttack() {
+        int damage = 0;
+        Mob monster = mEnemyList.get(mGame.getAttackingEnemyID()).getMonster();
         for (int x = 0; x < mParty.length; x++) {
-            for (int i = 0; i < mEnemyList.size(); i++) {
+            if (mParty[x].getStats().getHitPoints() > 0) {
                 if (mAttackSelected[x] == 1)
-                    mEnemyList.get(i).getMonster().setHp(mEnemyList.get(i).getMonster().getHP() - mParty[x].attack());
-                if (mAttackSelected[x] == 0)
-                    mEnemyList.get(i).getMonster().setHp(mEnemyList.get(i).getMonster().getHP() - mParty[x].specialAttack());
+                    damage = mParty[x].attack(monster);
+                if (mAttackSelected[x] == 2)
+                    damage = mParty[x].specialAbility(monster);
+                mGame.setGameScore(damage);
+                damage = monster.getStats().getHitPoints() - damage;
+                mEnemyList.get(mGame.getAttackingEnemyID()).getMonster().getStats().setHitPoints(damage);
             }
         }
-        mTurn = 1;
+        // mTurn = 1;
     }
 
     @Override
@@ -154,52 +188,57 @@ public class BattleState implements State {
 
         for (int x = 1; x < 3+1; x++)
         {
-            ratio = (mParty[x-1].getHP() * 1.0) / (mParty[x-1].getMaxHP() * 1.0);
-            paintBrush.setFont(font3);
-            paintBrush.setColor(Color.BLACK);
-            paintBrush.drawString(mParty[x - 1].getName(), 100 + (400 * (x - 1)), 500);
-            for(int j = 0; j < mParty[x-1].getAttackNames().size(); j++)
-                paintBrush.drawString(j+1 +". " + mParty[x-1].getAttackNames().get(j), 80 + (400 * (x-1)), 550 + (50 * j));
+            if (mParty[x-1].getStats().getHitPoints() > 0) {
+                ratio = (mParty[x - 1].getStats().getHitPoints() * 1.0) / (mParty[x - 1].getStats().getMaxHitPoints() * 1.0);
 
-            paintBrush.drawString("Choice: ", 80 + (400 * (x-1)), 650);
+                paintBrush.setFont(font3);
+                paintBrush.setColor(Color.BLACK);
+                paintBrush.drawString(mParty[x - 1].getStats().getName(), 100 + (400 * (x - 1)), 500);
+                for (int j = 0; j < mParty[x - 1].getAttackNames().size(); j++)
+                    paintBrush.drawString(j + 1 + ". " + mParty[x - 1].getAttackNames().get(j), 80 + (400 * (x - 1)), 550 + (50 * j));
 
-            System.out.println("Attack num: " + mAttackSelected[x-1]);
-            if (mAttackSelected[x-1] != 0)
-                paintBrush.drawString("" + mAttackSelected[x-1], 160 + (400 * (x-1)), 652);
+                paintBrush.drawString("Choice: ", 80 + (400 * (x - 1)), 650);
 
-            paintBrush.drawImage(GraphicAssets.mhealthHolder, -10 + (100 * x), 100 - (20 * x), 100, 20, null);
-            paintBrush.drawImage(GraphicAssets.mHealth, -10 + (100 * x), 100 - (20 * x), (int)(100 * ratio), 20, null);
-            paintBrush.setFont(font4);
-            paintBrush.setColor(Color.DARK_GRAY);
-            paintBrush.drawString(mParty[x-1].getHP() + " / " + mParty[x-1].getMaxHP(),
-                    10 + (100 * x), 135 - (20 * x));
-            paintBrush.drawImage(mParty[x - 1].getIcon(), -10 + (100 * x), 120 - (20 * x), null);
+                //System.out.println("Effect num: " + mAttackSelected[x-1]);
+                if (mAttackSelected[x - 1] != 0)
+                    paintBrush.drawString("" + mAttackSelected[x - 1], 160 + (400 * (x - 1)), 652);
+
+                paintBrush.drawImage(GraphicAssets.mhealthHolder, -10 + (100 * x), 100 - (20 * x), 100, 20, null);
+                paintBrush.drawImage(GraphicAssets.mHealth, -10 + (100 * x), 100 - (20 * x), (int) (100 * ratio), 20, null);
+                paintBrush.setFont(font4);
+                paintBrush.setColor(Color.DARK_GRAY);
+                paintBrush.drawString(mParty[x - 1].getStats().getHitPoints() + " / " +
+                                mParty[x - 1].getStats().getMaxHitPoints(), 10 + (100 * x), 135 - (20 * x));
+                paintBrush.drawImage(mParty[x - 1].getIcon(), -10 + (100 * x), 120 - (20 * x), null);
+            }
         }
 
-        for (int x = 0; x < mGame.getMonsterArray().size(); x++)
-        {
-            ratio = (mEnemyList.get(x).getMonster().getHP() * 1.0) / (mEnemyList.get(x).getMonster().getMaxHP() * 1.0);
-            int print = (int)(100 * ratio);
-            paintBrush.drawImage(GraphicAssets.mhealthHolder, 900 + (80 * x), 70 - (20 * x), 100, 20, null);
-            paintBrush.drawImage(GraphicAssets.mHealth, 900 + (80 * x), 70 - (20 * x), print, 20, null);
-            paintBrush.setFont(font4);
-            paintBrush.drawString(mEnemyList.get(x).getMonster().getHP() + " / " +
-                            mEnemyList.get(x).getMonster().getMaxHP(),
-                    920 + (80 * x), 105 - (20 * x));
-            paintBrush.drawImage(mEnemyList.get(x).getMonster().getIcon(), 900 + (80 * x), 140 - (20 * x), 70, 70, null);
-        }
+        int eID = mGame.getAttackingEnemyID();
+        ratio = (mEnemyList.get(eID).getMonster().getStats().getHitPoints() * 1.0) /
+                (mEnemyList.get(eID).getMonster().getStats().getMaxHitPoints() * 1.0);
+        int print = (int)(100 * ratio);
+        paintBrush.drawImage(GraphicAssets.mhealthHolder, 1000, 40, 100, 20, null);
+        paintBrush.drawImage(GraphicAssets.mHealth, 1000, 40, print, 20, null);
+        paintBrush.setFont(font4);
+        paintBrush.drawString(mEnemyList.get(eID).getMonster().getStats().getHitPoints() + " / " +
+                        mEnemyList.get(eID).getMonster().getStats().getMaxHitPoints(), 1020, 75);
+        paintBrush.drawImage(mEnemyList.get(eID).getMonster().getIcon(), 980, 40, 200, 200, null);
 
         Font font1 = new Font("arial", Font.BOLD, 45);
         paintBrush.setFont(font1);
         String turnString = "";
 
-        if (mTurn == 0)
+        if (mTurn == 0 && mEnemyHP > 0 && mCombinedPartyHP > 0)
         {
             turnString = "Your Turn";
         }
-        else if(mTurn == 1)
+        else if(mTurn == 1 && mEnemyHP > 0 && mCombinedPartyHP > 0)
         {
             turnString = "Enemies Turn";
+        }
+        else if (mEnemyHP < 1 || mCombinedPartyHP < 1)
+        {
+            turnString = "Fight Over";
         }
         else
         {
@@ -210,10 +249,11 @@ public class BattleState implements State {
             paintBrush.setColor(Color.BLACK);
             paintBrush.drawString(turnString, mGame.getWidth() / 3 + 101, 75);
 
-        if (count == 3)
+        if (((count == 3 || mEnemyHP < 1 || mCombinedPartyHP < 1) && mTurn == 0) || (mCombinedEnemyHP < 1 || mCombinedPartyHP < 1))
         {
             paintBrush.drawImage(GraphicAssets.mEnter, 570, 675, 100, 30, null);
         }
+
     }
 
 }

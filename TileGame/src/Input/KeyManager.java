@@ -23,6 +23,7 @@ public class KeyManager implements KeyListener{
 
     public boolean jay;
     public boolean kay;
+    public boolean sss;
 
     public KeyManager() {
         mKeys = new boolean[256];
@@ -46,6 +47,7 @@ public class KeyManager implements KeyListener{
 
         jay = mKeys[KeyEvent.VK_J];
         kay = mKeys[KeyEvent.VK_K];
+        sss = mKeys[KeyEvent.VK_S];
     }
 
     @Override

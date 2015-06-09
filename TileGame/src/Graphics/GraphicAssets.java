@@ -11,7 +11,7 @@ public class GraphicAssets {
     public static BufferedImage mPastry;
     public static BufferedImage mSaute;
     public static BufferedImage mVegetable;
-    public static BufferedImage mFish;
+    public static BufferedImage mFishChef;
     public static BufferedImage mMainScreen;
     public static BufferedImage mEnemy;
     public static BufferedImage mWall;
@@ -40,6 +40,11 @@ public class GraphicAssets {
     public static BufferedImage mhealthHolder;
     public static BufferedImage mHealth;
     public static BufferedImage mEnter;
+    public static BufferedImage mSbutton;
+    public static BufferedImage mStatsholder;
+    public static BufferedImage mEggs;
+    public static BufferedImage mDount;
+    public static BufferedImage mFish;
 
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/res/textures/spritesheet.png"));
@@ -67,6 +72,8 @@ public class GraphicAssets {
         SpriteSheet healthHolder = new SpriteSheet(ImageLoader.loadImage("/res/textures/healthholder.png"));
         SpriteSheet health = new SpriteSheet(ImageLoader.loadImage("/res/textures/health.png"));
         SpriteSheet enter = new SpriteSheet(ImageLoader.loadImage("/res/textures/enter.png"));
+        SpriteSheet sbutton = new SpriteSheet(ImageLoader.loadImage("/res/textures/sbutton.png"));
+        SpriteSheet statsholder = new SpriteSheet(ImageLoader.loadImage("/res/textures/statsholder.png"));
 
         mPlayerIcon = sheet.crop(0,0,mPlayerWidth, mPlayerHeight);
 
@@ -74,10 +81,14 @@ public class GraphicAssets {
         mPastry = sheet.crop(130, 0, 108 ,mPlayerHeight+20);
         mSaute = sheet.crop(240, 0, 140, mPlayerHeight+20);
         mVegetable = sheet.crop(380, 0, 120, mPlayerHeight+20);
-        mFish = sheet.crop(500, 0, 100, mPlayerHeight+20);
+        mFishChef = sheet.crop(500, 0, 100, mPlayerHeight+20);
+
+        //mEnemy = sheet.crop(0, 1155, 45, 45);
+        mEggs = sheet.crop(50, 1155, 90, 90);
+        mDount = sheet.crop(145, 1155, 90, 90);
+        mFish = sheet.crop(240, 1155, 180, 90);
 
         mMainScreen = sheet.crop(0, 810, 600,345);
-        mEnemy = sheet.crop(0, 1155, 45, 45);
         choppingBlock = cuttingBoard.crop(0, 0, 430, 210);
         mWood = KitchnSheet.crop(32, 0, 32, 32);
         mFloor = KitchnSheet.crop(64, 0, 32, 32);
@@ -106,6 +117,8 @@ public class GraphicAssets {
         mHealth = health.crop(0, 0, 200, 20);
         mhealthHolder = healthHolder.crop(0, 0, 200, 20);
         mEnter = enter.crop(0, 0, 300, 100);
+        mSbutton = sbutton.crop(0, 0, 100, 100);
+        mStatsholder = statsholder.crop(0, 0, 300, 400);
     }
 
 }
