@@ -6,13 +6,13 @@ package Entities.Mobs;
 public class RoundOneFactory extends MobFactory {
 
     @Override
-    public Mob makeMob(String type, int enemyID) {
-        if (type.equalsIgnoreCase("FishMob"))
-            return new FishMob(enemyID);
-        else if (type.equalsIgnoreCase("EggsMob"))
-            return new EggsMob(enemyID);
-        else if (type.equalsIgnoreCase("DonutMob"))
-            return new DonutMob(enemyID);
+    public AbstractMob makeMob(String type, int enemyID) {
+        if (type.equalsIgnoreCase("FishAbstractMob"))
+            return new FishAbstractMob(enemyID);
+        else if (type.equalsIgnoreCase("EggsAbstractMob"))
+            return new EggsAbstractMob(enemyID);
+        else if (type.equalsIgnoreCase("DonutAbstractMob"))
+            return new DonutAbstractMob(enemyID);
         else
             return null;
     }

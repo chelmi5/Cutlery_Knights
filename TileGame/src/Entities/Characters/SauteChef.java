@@ -5,7 +5,7 @@ import Graphics.GraphicAssets;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import Entities.Stats;
-import Entities.Mobs.Mob;
+import Entities.Mobs.AbstractMob;
 
 public class SauteChef extends AbstractHero
 {
@@ -23,7 +23,7 @@ public class SauteChef extends AbstractHero
       mCrushingBlow = new CrushingBlow();
    }
    
-   public int specialAbility(Mob mob)
+   public int specialAbility(AbstractMob mob)
    {
       return mCrushingBlow.Effect(this, mob);
    }

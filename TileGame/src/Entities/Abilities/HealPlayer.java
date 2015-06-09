@@ -1,7 +1,7 @@
 package Entities.Abilities;
 
 import Entities.Characters.AbstractHero;
-import Entities.Mobs.Mob;
+import Entities.Mobs.AbstractMob;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ import java.util.Random;
 public class HealPlayer implements SpecialAbilityBehavior {
 
     @Override
-    public int Effect(AbstractHero player, Mob mob) {
+    public int Effect(AbstractHero player, AbstractMob mob) {
         if(player.getStats().getHitPoints() < 100)
         {
             Random num = new Random();

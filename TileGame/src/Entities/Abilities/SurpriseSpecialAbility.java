@@ -1,6 +1,6 @@
 package Entities.Abilities;
 import Entities.Characters.AbstractHero;
-import Entities.Mobs.Mob;
+import Entities.Mobs.AbstractMob;
 
 import java.util.Random;
 
@@ -10,7 +10,7 @@ import java.util.Random;
 public class SurpriseSpecialAbility implements SpecialAbilityBehavior {
 
     @Override
-    public int Effect(AbstractHero player, Mob mob) {
+    public int Effect(AbstractHero player, AbstractMob mob) {
         Random num = new Random();
         int didItHit = num.nextInt(11);
         int damage = 0;

@@ -1,8 +1,9 @@
 package Entities.Characters;
 import Entities.Abilities.SpecialAbilityBehavior;
 import Entities.Abilities.SurpriseSpecialAbility;
+import Entities.Mobs.AbstractMob;
 import Graphics.GraphicAssets;
-import Entities.Mobs.Mob;
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import Entities.Stats;
@@ -23,7 +24,7 @@ public class FishChef extends AbstractHero
       attackNames.add("Surprise Effect");
    }
 
-   public int specialAbility(Mob mob)
+   public int specialAbility(AbstractMob mob)
    {
      return mSpecialAttack.Effect(this, mob);
    }

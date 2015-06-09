@@ -1,7 +1,7 @@
 package Engine;
 import Display.*;
 import Entities.Characters.AbstractHero;
-import Entities.GamePieces.EnemyPieceTemplate;
+import Entities.GamePieces.EnemyPiece;
 import Graphics.*;
 import Input.KeyManager;
 import Input.MouseManager;
@@ -37,7 +37,7 @@ public class Game implements Runnable {
     private Map mMap;
     private TileManager mTileManager;
     private AbstractHero[] mPartyArray = new AbstractHero[3];
-    private ArrayList<EnemyPieceTemplate> mMonsterArray = new ArrayList<EnemyPieceTemplate>();
+    private ArrayList<EnemyPiece> mMonsterArray = new ArrayList<EnemyPiece>();
     private boolean battleOver = false;
     private int mOriginalSize = 0;
     private int enemiesKilled = 0;
@@ -152,11 +152,11 @@ public class Game implements Runnable {
         mPaintBrush.dispose();
     }
 
-    public ArrayList<EnemyPieceTemplate> getMonsterArray() {
+    public ArrayList<EnemyPiece> getMonsterArray() {
         return mMonsterArray;
     }
 
-    public void setMonsterArray(ArrayList<EnemyPieceTemplate> mMonsterArray) {
+    public void setMonsterArray(ArrayList<EnemyPiece> mMonsterArray) {
         this.mMonsterArray = mMonsterArray;
     }
 

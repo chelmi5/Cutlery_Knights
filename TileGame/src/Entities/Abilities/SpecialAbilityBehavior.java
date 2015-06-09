@@ -1,7 +1,7 @@
 package Entities.Abilities;
-import Entities.Mobs.Mob;
+import Entities.Mobs.AbstractMob;
 import Entities.Characters.AbstractHero;
 
 public interface SpecialAbilityBehavior {
-    int Effect(AbstractHero player, Mob mob);
+    int Effect(AbstractHero player, AbstractMob mob);
 }

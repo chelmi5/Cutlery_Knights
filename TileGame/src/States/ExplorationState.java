@@ -3,26 +3,26 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import Engine.Game;
-import Entities.GamePieces.EnemyPieceTemplate;
-import Entities.GamePieces.PlayerPieceTemplate;
+import Entities.GamePieces.EnemyPiece;
+import Entities.GamePieces.PlayerPiece;
 import Entities.Mobs.*;
 import Map.Map;
 import Utilities.CodeTools;
 
 public class ExplorationState implements State {
 
-    private PlayerPieceTemplate mPlayerPiece;
+    private PlayerPiece mPlayerPiece;
     private Map mMap;
     private Game mGame;
     private StateManager mStateManager;
-    private ArrayList<EnemyPieceTemplate> mMonsterArray = new ArrayList<EnemyPieceTemplate>();
+    private ArrayList<EnemyPiece> mMonsterArray = new ArrayList<EnemyPiece>();
     private int enemyID = 0;
 
     public ExplorationState(Game game, StateManager stateManager) {
         mGame = game;
         mMap = mGame.getMap();
         mStateManager = stateManager;
-        mPlayerPiece = new PlayerPieceTemplate(game, 100, 100, mMap);
+        mPlayerPiece = new PlayerPiece(game, 100, 100, mMap);
         generateEnemies(mGame);
     }
 
@@ -51,8 +51,8 @@ public class ExplorationState implements State {
             }
                 System.out.println("Check");
 
-            Mob newMob = mobFactory.makeMob(mobString, enemyID);
-            mMonsterArray.add(new EnemyPieceTemplate(game, temp1, temp2, mMap, mPlayerPiece, newMob));
+            AbstractMob newMob = mobFactory.makeMob(mobString, enemyID);
+            mMonsterArray.add(new EnemyPiece(game, temp1, temp2, mMap, mPlayerPiece, newMob));
             enemyID ++;
         }
         mGame.setmOriginalSize(mMonsterArray.size());
@@ -104,7 +104,7 @@ public class ExplorationState implements State {
         }
     }
 
-    public PlayerPieceTemplate getPlayer() {
+    public PlayerPiece getPlayer() {
         return mPlayerPiece;
     }
 }

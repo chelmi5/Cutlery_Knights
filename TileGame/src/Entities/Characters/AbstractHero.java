@@ -2,7 +2,7 @@ package Entities.Characters;
 import Entities.Abilities.RegularPlayerSpecialAbility;
 import Entities.Abilities.SpecialAbilityBehavior;
 import Entities.Stats;
-import Entities.Mobs.Mob;
+import Entities.Mobs.AbstractMob;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -25,9 +25,9 @@ public abstract class AbstractHero
 
    public abstract ArrayList<String> getAttackNames();
    public abstract BufferedImage getIcon();
-   public abstract int specialAbility(Mob mob);
+   public abstract int specialAbility(AbstractMob mob);
 
-   public int attack(Mob mob)
+   public int attack(AbstractMob mob)
    {
       return mRegularAttack.Effect(this, mob);
    }

@@ -57,7 +57,7 @@ public class PartySelectState implements State{
         if(mGame.getKeyManager().five && count < 3)
         {
             System.out.println("five");
-            partyArray[count] = "FishMob Chef";
+            partyArray[count] = "FishAbstractMob Chef";
             mPartyArray[count] = new FishChef("FishChef");
             count++;
         }
@@ -120,7 +120,7 @@ public class PartySelectState implements State{
         paintBrush.drawString("2. Pastry", 350, 420);
         paintBrush.drawString("3. Saute", 560, 420);
         paintBrush.drawString("4. Vegetable", 760, 420);
-        paintBrush.drawString("5. FishMob", 960, 420);
+        paintBrush.drawString("5. FishAbstractMob", 960, 420);
 
         if (pressedS) {
             for (int x = 0; x < mCharacterManager.mCharacterArray.length; x++) {

@@ -1,12 +1,12 @@
 package Entities.Abilities;
-import Entities.Mobs.Mob;
+import Entities.Mobs.AbstractMob;
 import Entities.Characters.AbstractHero;
 import java.util.Random;
 
 public class BasicEnemySpecialAbility implements SpecialAbilityBehavior {
 
     @Override
-    public int Effect(AbstractHero player, Mob mob) {
+    public int Effect(AbstractHero player, AbstractMob mob) {
         int damage = 0;
         double didItHit = Math.random();
         Random num = new Random();

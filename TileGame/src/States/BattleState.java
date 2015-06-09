@@ -1,8 +1,8 @@
 package States;
-import Entities.Mobs.Mob;
+import Entities.Mobs.AbstractMob;
 import Engine.Game;
 import Entities.Characters.AbstractHero;
-import Entities.GamePieces.EnemyPieceTemplate;
+import Entities.GamePieces.EnemyPiece;
 import Graphics.GraphicAssets;
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class BattleState implements State {
     private Game mGame;
     private StateManager mStateManager;
     private AbstractHero[] mParty;
-    private ArrayList<EnemyPieceTemplate> mEnemyList;
+    private ArrayList<EnemyPiece> mEnemyList;
     private int mCombinedPartyHP;
     private int mCombinedEnemyHP;
     private int mEnemyHP;
@@ -149,7 +149,7 @@ public class BattleState implements State {
 
     private void playerAttack() {
         int damage = 0;
-        Mob monster = mEnemyList.get(mGame.getAttackingEnemyID()).getMonster();
+        AbstractMob monster = mEnemyList.get(mGame.getAttackingEnemyID()).getMonster();
         for (int x = 0; x < mParty.length; x++) {
             if (mParty[x].getStats().getHitPoints() > 0) {
                 if (mAttackSelected[x] == 1)

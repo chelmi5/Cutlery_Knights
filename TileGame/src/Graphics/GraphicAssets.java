@@ -1,4 +1,6 @@
 package Graphics;
+import Items.Oregano;
+
 import java.awt.image.BufferedImage;
 
 public class GraphicAssets {
@@ -45,6 +47,7 @@ public class GraphicAssets {
     public static BufferedImage mEggs;
     public static BufferedImage mDount;
     public static BufferedImage mFish;
+    public static BufferedImage mOregano;
 
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/res/textures/spritesheet.png"));
@@ -74,6 +77,7 @@ public class GraphicAssets {
         SpriteSheet enter = new SpriteSheet(ImageLoader.loadImage("/res/textures/enter.png"));
         SpriteSheet sbutton = new SpriteSheet(ImageLoader.loadImage("/res/textures/sbutton.png"));
         SpriteSheet statsholder = new SpriteSheet(ImageLoader.loadImage("/res/textures/statsholder.png"));
+        SpriteSheet oregano = new SpriteSheet(ImageLoader.loadImage("/res/textures/oregano.png"));
 
         mPlayerIcon = sheet.crop(0,0,mPlayerWidth, mPlayerHeight);
 
@@ -119,6 +123,7 @@ public class GraphicAssets {
         mEnter = enter.crop(0, 0, 300, 100);
         mSbutton = sbutton.crop(0, 0, 100, 100);
         mStatsholder = statsholder.crop(0, 0, 300, 400);
+       // mOregano = oregano.crop();
     }
 
 }

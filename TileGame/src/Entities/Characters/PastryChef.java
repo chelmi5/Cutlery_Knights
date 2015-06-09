@@ -1,11 +1,11 @@
 package Entities.Characters;
 import Entities.Abilities.HealPlayer;
 import Entities.Abilities.SpecialAbilityBehavior;
+import Entities.Mobs.AbstractMob;
 import Entities.Stats;
 import Graphics.GraphicAssets;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import Entities.Mobs.Mob;
 
 
 public class PastryChef extends AbstractHero
@@ -25,7 +25,7 @@ public class PastryChef extends AbstractHero
       mHeal = new HealPlayer();
    }
 
-   public int specialAbility(Mob mob)
+   public int specialAbility(AbstractMob mob)
    {
       return mHeal.Effect(this, mob);
    }
