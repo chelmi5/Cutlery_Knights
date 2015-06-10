@@ -8,6 +8,7 @@ public interface Item {
     String description = null;
 
     void action(AbstractHero character);
-
     Image getIcon();
+
+    String getDescription();
 }

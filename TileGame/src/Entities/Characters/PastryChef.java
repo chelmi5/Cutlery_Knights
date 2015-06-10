@@ -12,14 +12,15 @@ public class PastryChef extends AbstractHero
 {
 
    private BufferedImage mIcon;
+   private BufferedImage mFightIcon;
    private ArrayList<String> attackNames = new ArrayList<String>();
    private SpecialAbilityBehavior mHeal;
 
    public PastryChef(String name)
    {
-
       super(new Stats(name, 100, 5, 25, 45, 0.8), 0.2, 1, 2);
       mIcon = GraphicAssets.mPastry;
+      mFightIcon = GraphicAssets.mPastryFight;
       attackNames.add("Regular Effect (80% chance)");
       attackNames.add("HealPlayer");
       mHeal = new HealPlayer();
@@ -38,5 +39,10 @@ public class PastryChef extends AbstractHero
    @Override
    public BufferedImage getIcon() {
       return mIcon;
+   }
+
+   @Override
+   public BufferedImage getFightIcon() {
+      return mFightIcon;
    }
 }

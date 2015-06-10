@@ -2,6 +2,7 @@ package Items;
 import Entities.Characters.AbstractHero;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import Graphics.GraphicAssets;
 
 public class Oregano implements Item {
 
@@ -11,8 +12,8 @@ public class Oregano implements Item {
 
     public Oregano(){
         this.name = "Oregano";
-        this.description = "Increase damage range by 10 for regular attacks";
-        //mIcon = ;
+        this.description = "+ 10 Max Damage";
+        mIcon = GraphicAssets.mOregano;
     }
 
 

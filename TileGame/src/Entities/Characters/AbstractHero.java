@@ -25,6 +25,7 @@ public abstract class AbstractHero
 
    public abstract ArrayList<String> getAttackNames();
    public abstract BufferedImage getIcon();
+   public abstract BufferedImage getFightIcon();
    public abstract int specialAbility(AbstractMob mob);
 
    public int attack(AbstractMob mob)

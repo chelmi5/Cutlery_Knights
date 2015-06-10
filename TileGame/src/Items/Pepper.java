@@ -4,25 +4,24 @@ import Graphics.GraphicAssets;
 
 import java.awt.image.BufferedImage;
 
-public class Rosemary implements Item {
+public class Pepper implements Item {
 
     private String name;
     private String description;
     private BufferedImage mIcon;
 
-    public Rosemary(){
-        this.name = "Rosemary";
-        this.description = "Increases health by 10 points";
-        mIcon = GraphicAssets.mRoseMary;
+    public Pepper(){
+        this.name = "Artificial Preservatives";
+        this.description = " - 10% chance to Hit";
+        mIcon = GraphicAssets.mArtificialPer;
     }
 
     @Override
     public void action(AbstractHero character) {
-        character.getStats().setHitPoints(character.getStats().getHitPoints() + 10);
-        System.out.println("Applied a 10 HP to hero");
+        character.getStats().setChanceToHit(-0.1);
     }
 
-    public BufferedImage getIcon(){
+    public BufferedImage getIcon() {
         return mIcon;
     }
 

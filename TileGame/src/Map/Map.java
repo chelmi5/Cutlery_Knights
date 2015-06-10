@@ -1,10 +1,8 @@
 package Map;
 import Engine.Game;
-import Tile.TileManager;
 import Tile.Tile;
 import Utilities.FileUtility;
 import java.awt.*;
-import Graphics.GraphicAssets;
 
 public class Map {
 
@@ -13,7 +11,6 @@ public class Map {
     private int mHeight;
     private int mSpawnX;
     private int mSpawnY;
-
     private int[][] tileArray;
 
     public Map(Game game, String path) {

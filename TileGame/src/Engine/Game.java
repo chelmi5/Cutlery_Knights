@@ -2,13 +2,12 @@ package Engine;
 import Display.*;
 import Entities.Characters.AbstractHero;
 import Entities.GamePieces.EnemyPiece;
+import Entities.GamePieces.ItemPiece;
 import Graphics.*;
 import Input.KeyManager;
-import Input.MouseManager;
 import Map.Map;
 import States.*;
 import Tile.TileManager;
-
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
@@ -29,7 +28,6 @@ public class Game implements Runnable {
 
     // Input
     private KeyManager mKeyManager;
-    private MouseManager mMouseManager;
 
     // Game Camera
     private GameCamera mGameCamera;
@@ -42,13 +40,13 @@ public class Game implements Runnable {
     private int mOriginalSize = 0;
     private int enemiesKilled = 0;
     private int attackingEnemyID = 0;
+    private ArrayList<ItemPiece> mItems;
 
     public Game(String title, int width, int height) {
         mWidth = width;
         mHeight = height;
         mTitle = title;
         mKeyManager = new KeyManager();
-        mMouseManager = new MouseManager();
         mMap = new Map(this, "map2.txt");
     }
 
@@ -58,7 +56,6 @@ public class Game implements Runnable {
         mTileManager = new TileManager();
         mDisplay = new Display(mTitle, mWidth, mHeight);
         mDisplay.getFrame().addKeyListener(mKeyManager);
-        mDisplay.getFrame().addMouseListener(mMouseManager);
         mGameCamera = new GameCamera(this, 0, 0);
 
         mStateManager = new StateManager(this);
@@ -66,7 +63,6 @@ public class Game implements Runnable {
 
     private void update() {
         mKeyManager.update();
-        mMouseManager.update();
 
         if(StateManager.getCurrentState() != null)
             StateManager.getCurrentState().update();
@@ -234,5 +230,13 @@ public class Game implements Runnable {
             return true;
         else
             return false;
+    }
+
+    public ArrayList<ItemPiece> getItems() {
+        return mItems;
+    }
+
+    public void setItems(ArrayList<ItemPiece> mItems) {
+        this.mItems = mItems;
     }
 }

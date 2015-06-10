@@ -3,7 +3,7 @@ import Entities.Stats;
 import Graphics.GraphicAssets;
 import java.awt.image.BufferedImage;
 
-public class FishMob extends Mob
+public class FishMob extends AbstractMob
 {
    private BufferedImage mIcon;
 

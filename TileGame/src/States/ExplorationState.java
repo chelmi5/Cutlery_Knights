@@ -1,12 +1,16 @@
 package States;
 import java.awt.*;
 import java.util.ArrayList;
-
+import Items.Item;
 import Engine.Game;
 import Entities.GamePieces.EnemyPiece;
+import Entities.GamePieces.ItemPiece;
 import Entities.GamePieces.PlayerPiece;
 import Entities.Mobs.*;
+import Items.Oregano;
+import Items.SimpleItemFactory;
 import Map.Map;
+import Graphics.GraphicAssets;
 import Utilities.CodeTools;
 
 public class ExplorationState implements State {
@@ -16,6 +20,10 @@ public class ExplorationState implements State {
     private Game mGame;
     private StateManager mStateManager;
     private ArrayList<EnemyPiece> mMonsterArray = new ArrayList<EnemyPiece>();
+    private ArrayList<ItemPiece> itemList = new ArrayList<ItemPiece>();
+    private String mEffectString = "";
+    private int mTime = 0;
+    private boolean runTime = false;
     private int enemyID = 0;
 
     public ExplorationState(Game game, StateManager stateManager) {
@@ -24,12 +32,13 @@ public class ExplorationState implements State {
         mStateManager = stateManager;
         mPlayerPiece = new PlayerPiece(game, 100, 100, mMap);
         generateEnemies(mGame);
+        generateItems(mGame);
     }
 
     private void generateEnemies(Game game) {
         RoundOneFactory mobFactory = new RoundOneFactory();
 
-        for(int x = 0; x < 4; x++) {
+        for(int x = 0; x < 6; x++) {
 
             String mobString;
             int randNum = CodeTools.randInt(1, 3);
@@ -44,7 +53,7 @@ public class ExplorationState implements State {
 
             int temp1 = 100 + CodeTools.randInt(20, 400);
             int temp2 = 100 + CodeTools.randInt(20, 400);
-            while( colison(temp1, temp2))
+            while( collision(temp1, temp2))
             {
                 temp1 = 100 + CodeTools.randInt(20, 400);
                 temp2 = 100 + CodeTools.randInt(20, 400);
@@ -59,7 +68,28 @@ public class ExplorationState implements State {
         mGame.setMonsterArray(mMonsterArray);
     }
 
-    private boolean colison(int numX, int numY) {
+    private void generateItems(Game game)
+    {
+        SimpleItemFactory newItemFactory = new SimpleItemFactory();
+        for(int x = 0; x < 4; x++) {
+
+            int temp1 = 100 + CodeTools.randInt(20, 400);
+            int temp2 = 100 + CodeTools.randInt(20, 400);
+            while( collision(temp1, temp2))
+            {
+                temp1 = 100 + CodeTools.randInt(20, 400);
+                temp2 = 100 + CodeTools.randInt(20, 400);
+            }
+            System.out.println("Check");
+
+            int rand = CodeTools.randInt(1, 3);
+            Item newItem = newItemFactory.createItem(rand);
+            itemList.add(new ItemPiece(game, temp1, temp2, mMap, mPlayerPiece, newItem, this));
+        }
+        mGame.setItems(itemList);
+    }
+
+    private boolean collision(int numX, int numY) {
             int newX = 0;
             int newY = 0;
             boolean trigger = false;
@@ -76,6 +106,25 @@ public class ExplorationState implements State {
     public void update() {
         mMap.update();
         mPlayerPiece.update();
+        itemList = mGame.getItems();
+
+        if (runTime)
+            mTime++;
+        if (mTime > 120)
+        {
+            mEffectString = "";
+            runTime = false;
+            mTime = 0;
+        }
+
+        for (int x = 0; x < itemList.size(); x++)
+        {
+            itemList.get(x).update();
+            if (itemList.get(x).getHit())
+                itemList.remove(x);
+        }
+        mGame.setItems(itemList);
+
         for (int x = 0; x < mMonsterArray.size(); x++) {
             mMonsterArray.get(x).update();
         }
@@ -99,12 +148,35 @@ public class ExplorationState implements State {
     public void render(Graphics paintBrush) {
         mMap.render(paintBrush);
         mPlayerPiece.render(paintBrush);
+
+
         for (int x = 0; x < mMonsterArray.size(); x++){
             mMonsterArray.get(x).render(paintBrush);
+        }
+
+        for (int i = 0; i < itemList.size(); i++)
+        {
+            itemList.get(i).render(paintBrush);
+        }
+
+        Graphics2D twoDpaintBrush = (Graphics2D) paintBrush;
+        paintBrush.setColor(Color.blue);
+        if (mTime < 120 && runTime)
+        {
+            twoDpaintBrush.drawImage(GraphicAssets.mWood, 1000, 670, 400, 50, null);
+            paintBrush.drawString(mEffectString, 1010, 695);
         }
     }
 
     public PlayerPiece getPlayer() {
         return mPlayerPiece;
+    }
+
+    public void setEffectString(String mEffectString) {
+        this.mEffectString = mEffectString;
+    }
+
+    public void setRunTime(boolean runTime) {
+        this.runTime = runTime;
     }
 }

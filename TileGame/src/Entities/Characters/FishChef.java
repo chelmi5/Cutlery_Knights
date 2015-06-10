@@ -12,6 +12,7 @@ public class FishChef extends AbstractHero
 {
 
    private BufferedImage mIcon;
+   private BufferedImage mFightIcon;
    private ArrayList<String> attackNames = new ArrayList<String>();
    private SpecialAbilityBehavior mSpecialAttack;
 
@@ -19,6 +20,7 @@ public class FishChef extends AbstractHero
    {
       super(new Stats(name, 100, 6, 20, 40, 0.8), 0.4, 1, 3);
       mIcon = GraphicAssets.mFishChef;
+      mFightIcon = GraphicAssets.mFishFight;
       mSpecialAttack = new SurpriseSpecialAbility();
       attackNames.add("Regular Effect (80% chance)");
       attackNames.add("Surprise Effect");
@@ -37,6 +39,11 @@ public class FishChef extends AbstractHero
    @Override
    public BufferedImage getIcon() {
       return mIcon;
+   }
+
+   @Override
+   public BufferedImage getFightIcon() {
+      return mFightIcon;
    }
 
 }

@@ -9,11 +9,25 @@ public class GraphicAssets {
     private static final int mPlayerHeight = 280;
 
     public static BufferedImage mPlayerIcon;
+
     public static BufferedImage mRoost;
     public static BufferedImage mPastry;
     public static BufferedImage mSaute;
     public static BufferedImage mVegetable;
     public static BufferedImage mFishChef;
+
+    public static BufferedImage mRoostHead;
+    public static BufferedImage mPastryHead;
+    public static BufferedImage mSauteHead;
+    public static BufferedImage mVeggieHead;
+    public static BufferedImage mFishHead;
+
+    public static BufferedImage mRoostFight;
+    public static BufferedImage mPastryFight;
+    public static BufferedImage mSauteFight;
+    public static BufferedImage mVeggieFight;
+    public static BufferedImage mFishFight;
+
     public static BufferedImage mMainScreen;
     public static BufferedImage mEnemy;
     public static BufferedImage mWall;
@@ -48,6 +62,8 @@ public class GraphicAssets {
     public static BufferedImage mDount;
     public static BufferedImage mFish;
     public static BufferedImage mOregano;
+    public static BufferedImage mRoseMary;
+    public static BufferedImage mArtificialPer;
 
     public static void init() {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/res/textures/spritesheet.png"));
@@ -77,7 +93,7 @@ public class GraphicAssets {
         SpriteSheet enter = new SpriteSheet(ImageLoader.loadImage("/res/textures/enter.png"));
         SpriteSheet sbutton = new SpriteSheet(ImageLoader.loadImage("/res/textures/sbutton.png"));
         SpriteSheet statsholder = new SpriteSheet(ImageLoader.loadImage("/res/textures/statsholder.png"));
-        SpriteSheet oregano = new SpriteSheet(ImageLoader.loadImage("/res/textures/oregano.png"));
+        SpriteSheet oregano = new SpriteSheet(ImageLoader.loadImage("/res/textures/spices.png"));
 
         mPlayerIcon = sheet.crop(0,0,mPlayerWidth, mPlayerHeight);
 
@@ -86,6 +102,18 @@ public class GraphicAssets {
         mSaute = sheet.crop(240, 0, 140, mPlayerHeight+20);
         mVegetable = sheet.crop(380, 0, 120, mPlayerHeight+20);
         mFishChef = sheet.crop(500, 0, 100, mPlayerHeight+20);
+
+       // mRoostHead = sheet.crop(0, 0, 130, mPlayerHeight - 20);
+       // mPastryHead = sheet.crop(130, 0, 108 ,mPlayerHeight - 20);
+       // mSauteHead = sheet.crop(240, 0, 108 ,mPlayerHeight - 20);
+       // mVeggieHead = sheet.crop(380, 0, 120, mPlayerHeight - 20);
+       // mFishHead = sheet.crop(500, 0, 120, mPlayerHeight - 20);
+
+        mRoostFight = sheet.crop(0, 1355, 120, 120);
+        mPastryFight = sheet.crop(125, 1355, 120, 120);
+        mSauteFight = sheet.crop(250, 1355, 120, 120);
+        mVeggieFight = sheet.crop(375, 1355, 115, 120);
+        mFishFight = sheet.crop(490, 1355, 100, 120);
 
         //mEnemy = sheet.crop(0, 1155, 45, 45);
         mEggs = sheet.crop(50, 1155, 90, 90);
@@ -123,7 +151,10 @@ public class GraphicAssets {
         mEnter = enter.crop(0, 0, 300, 100);
         mSbutton = sbutton.crop(0, 0, 100, 100);
         mStatsholder = statsholder.crop(0, 0, 300, 400);
-       // mOregano = oregano.crop();
+
+        mOregano = oregano.crop(0, 0, 75, 105);
+        mRoseMary = oregano.crop(0, 300, 65, 105);
+        mArtificialPer = oregano.crop(320, 150, 80, 105);
     }
 
 }

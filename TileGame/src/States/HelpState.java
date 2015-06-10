@@ -59,7 +59,7 @@ public class HelpState implements State{
         paintBrush.drawString("When fighting you will take turns with the enemy attacking or defending.", 100, 390);
         paintBrush.drawString("Flip through the menu in order to select your action and hit enter.", 100, 450);
         paintBrush.drawString("You will return to the map if you have chopped the food.", 100, 510);
-        paintBrush.drawString("If all the players in your party have been killed you loose.", 100, 570);
+        paintBrush.drawString("If all the players in your party have been killed you lose.", 100, 570);
 
 
         paintBrush.setFont(font2);

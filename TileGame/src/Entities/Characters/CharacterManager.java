@@ -9,6 +9,6 @@ public class CharacterManager {
         mCharacterArray[1] = new PastryChef("Pastry Chef");
         mCharacterArray[2] = new SauteChef("Saute Chef");
         mCharacterArray[3] = new PastryChef("Veggie Chef");
-        mCharacterArray[4] = new FishChef("FishAbstractMob Chef");
+        mCharacterArray[4] = new FishChef("FishMob Chef");
     }
 }

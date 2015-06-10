@@ -11,6 +11,7 @@ public class SauteChef extends AbstractHero
 {
 
    private BufferedImage mIcon;
+   private BufferedImage mFightIcon;
    private ArrayList<String> attackNames = new ArrayList<String>();
    private SpecialAbilityBehavior mCrushingBlow;
 
@@ -18,6 +19,7 @@ public class SauteChef extends AbstractHero
    {
       super(new Stats(name, 125, 4, 35, 60, 0.8), 0.2, 1, 1);
       mIcon = GraphicAssets.mSaute;
+      mFightIcon = GraphicAssets.mSauteFight;
       attackNames.add("Regular Effect (80% chance)");
       attackNames.add("Crushing Blow");
       mCrushingBlow = new CrushingBlow();
@@ -36,5 +38,10 @@ public class SauteChef extends AbstractHero
    @Override
    public BufferedImage getIcon() {
       return mIcon;
+   }
+
+   @Override
+   public BufferedImage getFightIcon() {
+      return mFightIcon;
    }
 }

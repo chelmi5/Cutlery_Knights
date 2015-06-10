@@ -3,7 +3,7 @@ import Entities.Stats;
 import Graphics.GraphicAssets;
 import java.awt.image.BufferedImage;
 
-public class DonutMob extends Mob
+public class DonutMob extends AbstractMob
 {
    private BufferedImage mIcon;
 
