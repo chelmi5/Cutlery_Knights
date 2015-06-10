@@ -8,7 +8,19 @@ public class GraphicAssets {
     private static final int mPlayerWidth = 128;
     private static final int mPlayerHeight = 280;
 
-    public static BufferedImage mPlayerIcon;
+    public static BufferedImage mPlayerStill;
+    public static BufferedImage mPlayerDownRight;
+    public static BufferedImage mPlayerDownMid;
+    public static BufferedImage mPlayerDownLeft;
+    public static BufferedImage mPlayerLeftLeft;
+    public static BufferedImage mPlayerLeftMid;
+    public static BufferedImage mPlayerLeftRight;
+    public static BufferedImage mPlayerUpLeft;
+    public static BufferedImage mPlayerUpMid;
+    public static BufferedImage mPlayerUpRight;
+    public static BufferedImage mPlayerRightLeft;
+    public static BufferedImage mPlayerRightMid;
+    public static BufferedImage mPlayerRightRight;
 
     public static BufferedImage mRoost;
     public static BufferedImage mPastry;
@@ -95,7 +107,19 @@ public class GraphicAssets {
         SpriteSheet statsholder = new SpriteSheet(ImageLoader.loadImage("/res/textures/statsholder.png"));
         SpriteSheet oregano = new SpriteSheet(ImageLoader.loadImage("/res/textures/spices.png"));
 
-        mPlayerIcon = sheet.crop(0,0,mPlayerWidth, mPlayerHeight);
+        mPlayerStill = sheet.crop(3, 1250, 56, 100);
+        mPlayerDownRight = sheet.crop(60, 1250, 56, 100);
+        mPlayerDownMid = mPlayerStill;
+        mPlayerDownLeft = sheet.crop(172, 1250, 56, 100);
+        mPlayerLeftLeft = sheet.crop(278, 1250, 49, 100);
+        mPlayerLeftMid = sheet.crop(325, 1250, 50, 100);
+        mPlayerLeftRight = sheet.crop(373, 1250, 50, 100);
+        mPlayerUpMid = sheet.crop(421, 1250, 56, 100);
+        mPlayerUpRight = sheet.crop(479, 1250, 56, 100);
+        mPlayerUpLeft = sheet.crop(535, 1250, 56, 100);
+        mPlayerRightRight = sheet.crop(393, 1155, 50, 95);
+        mPlayerRightMid = sheet.crop(442, 1155, 50, 95);
+        mPlayerRightLeft = sheet.crop(490, 1155, 50, 95);
 
         mRoost = sheet.crop(0, 0, 130, mPlayerHeight+20);
         mPastry = sheet.crop(130, 0, 108 ,mPlayerHeight+20);
@@ -118,7 +142,7 @@ public class GraphicAssets {
         //mEnemy = sheet.crop(0, 1155, 45, 45);
         mEggs = sheet.crop(50, 1155, 90, 90);
         mDount = sheet.crop(145, 1155, 90, 90);
-        mFish = sheet.crop(240, 1155, 180, 90);
+        mFish = sheet.crop(240, 1155, 156, 90);
 
         mMainScreen = sheet.crop(0, 810, 600,345);
         choppingBlock = cuttingBoard.crop(0, 0, 430, 210);

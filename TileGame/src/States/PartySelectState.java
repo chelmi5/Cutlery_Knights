@@ -1,10 +1,6 @@
 package States;
 import Engine.Game;
-import Entities.Characters.AbstractHero;
-import Entities.Characters.CharacterManager;
-import Entities.Characters.FishChef;
-import Entities.Characters.PastryChef;
-import Entities.Characters.SauteChef;
+import Entities.Characters.*;
 import Graphics.GraphicAssets;
 import java.awt.*;
 
@@ -30,35 +26,35 @@ public class PartySelectState implements State{
         {
             System.out.println("one");
             partyArray[count] = "Roost Chef";
-            mPartyArray[count] = new FishChef("FishChef");
+            mPartyArray[count] = new RoastChef("Roost Chef");
             count++;
         }
         if(mGame.getKeyManager().two && count < 3)
         {
             System.out.println("two");
             partyArray[count] = "Pastry Chef";
-            mPartyArray[count] = new PastryChef("PastryChef");
+            mPartyArray[count] = new PastryChef("Pastry Chef");
             count++;
         }
         if(mGame.getKeyManager().three && count < 3)
         {
             System.out.println("three");
             partyArray[count] = "Saute Chef";
-            mPartyArray[count] = new SauteChef("SauteChef");
+            mPartyArray[count] = new SauteChef("Saute Chef");
             count++;
         }
         if(mGame.getKeyManager().four && count < 3)
         {
             System.out.println("four");
             partyArray[count] = "Vegetable Chef";
-            mPartyArray[count] = new PastryChef("VeggieChef");
+            mPartyArray[count] = new VeggieChef("Veggie Chef");
             count++;
         }
         if(mGame.getKeyManager().five && count < 3)
         {
             System.out.println("five");
-            partyArray[count] = "FishMob Chef";
-            mPartyArray[count] = new FishChef("FishChef");
+            partyArray[count] = "Fish Chef";
+            mPartyArray[count] = new FishChef("Fish Chef");
             count++;
         }
         if (mGame.getKeyManager().backspace && count > 0) {

@@ -17,7 +17,7 @@ public class EnemyPiece extends PieceTemplate {
     private int mEnemyID;
 
     public EnemyPiece(Game game, float x, float y, Map map, PlayerPiece playerPiece, AbstractMob monster) {
-        super(game, x, y, DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_WIDTH, map);
+        super(game, x, y, DEFAULT_CREATURE_WIDTH, 64, map);
         mMonster = monster;
         mPlayerPiece = playerPiece;
         mMonster.getEnemyID();

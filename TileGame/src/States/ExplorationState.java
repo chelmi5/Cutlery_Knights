@@ -51,12 +51,12 @@ public class ExplorationState implements State {
             else
                 mobString = "";
 
-            int temp1 = 100 + CodeTools.randInt(20, 400);
-            int temp2 = 100 + CodeTools.randInt(20, 400);
+            int temp1 = 100 + CodeTools.randInt(20, 600);
+            int temp2 = 100 + CodeTools.randInt(20, 600);
             while( collision(temp1, temp2))
             {
-                temp1 = 100 + CodeTools.randInt(20, 400);
-                temp2 = 100 + CodeTools.randInt(20, 400);
+                temp1 = 100 + CodeTools.randInt(20, 600);
+                temp2 = 100 + CodeTools.randInt(20, 600);
             }
                 System.out.println("Check");
 
@@ -73,12 +73,12 @@ public class ExplorationState implements State {
         SimpleItemFactory newItemFactory = new SimpleItemFactory();
         for(int x = 0; x < 4; x++) {
 
-            int temp1 = 100 + CodeTools.randInt(20, 400);
-            int temp2 = 100 + CodeTools.randInt(20, 400);
+            int temp1 = 100 + CodeTools.randInt(20, 600);
+            int temp2 = 100 + CodeTools.randInt(20, 600);
             while( collision(temp1, temp2))
             {
-                temp1 = 100 + CodeTools.randInt(20, 400);
-                temp2 = 100 + CodeTools.randInt(20, 400);
+                temp1 = 100 + CodeTools.randInt(20, 800);
+                temp2 = 100 + CodeTools.randInt(20, 800);
             }
             System.out.println("Check");
 

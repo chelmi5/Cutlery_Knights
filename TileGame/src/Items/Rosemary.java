@@ -12,7 +12,7 @@ public class Rosemary implements Item {
 
     public Rosemary(){
         this.name = "Rosemary";
-        this.description = "Increases health by 10 points";
+        this.description = "+ 10 Health Points";
         mIcon = GraphicAssets.mRoseMary;
     }
 

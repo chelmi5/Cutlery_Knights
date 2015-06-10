@@ -48,8 +48,12 @@ public class EndState implements State {
         String enemies = " enemies.";
         if (mGame.getKillCount() == 1)
             enemies = " enemy.";
-        paintBrush.drawString("You killed " + mGame.getKillCount() + enemies
-                , 100, 250);
+        paintBrush.drawString("You killed " + mGame.getKillCount() + enemies, 100, 250);
+
+        paintBrush.drawString("Credits", 800, 73);
+        paintBrush.drawString("Chelsea Davis", 800, 120);
+        paintBrush.drawString("James Reisenauer", 800, 160);
+        paintBrush.drawString("Stormi Sprague", 800, 200);
 
         mTime++;
         if (mTime < 30) {

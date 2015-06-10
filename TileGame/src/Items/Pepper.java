@@ -12,7 +12,7 @@ public class Pepper implements Item {
 
     public Pepper(){
         this.name = "Artificial Preservatives";
-        this.description = " - 10% chance to Hit";
+        this.description = "- 10% chance to Hit";
         mIcon = GraphicAssets.mArtificialPer;
     }
 
